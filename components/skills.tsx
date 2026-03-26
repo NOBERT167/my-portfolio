@@ -1,0 +1,98 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { SKILLS } from "@/constants";
+
+const categoryMap: Record<string, { label: string; color: string }> = {
+  language: { label: "Languages", color: "#a855f7" },
+  frontend: { label: "Frontend", color: "#6366f1" },
+  backend: { label: "Backend", color: "#ec4899" },
+  tools: { label: "Tools", color: "#f59e0b" },
+};
+
+export function Skills() {
+  const grouped = SKILLS.reduce<Record<string, typeof SKILLS>>((acc, skill) => {
+    if (!acc[skill.category]) acc[skill.category] = [];
+    acc[skill.category].push(skill);
+    return acc;
+  }, {});
+
+  return (
+    <section id="skills" className="relative py-24 md:py-32 px-6">
+      <div
+        className="gradient-orb w-[300px] h-[300px] top-0 left-0 bg-indigo-500/10"
+        style={{ animationDelay: "3s" }}
+      />
+
+      <div className="mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
+            Tech stack
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-12">
+            Skills & Tools
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          {Object.entries(grouped).map(([category, skills], groupIdx) => (
+            <motion.div
+              key={category}
+              className="glass-card noise spotlight-card rounded-2xl p-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: groupIdx * 0.1, duration: 0.5 }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty(
+                  "--spotlight-x",
+                  `${e.clientX - rect.left}px`,
+                );
+                e.currentTarget.style.setProperty(
+                  "--spotlight-y",
+                  `${e.clientY - rect.top}px`,
+                );
+              }}
+            >
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-5">
+                  <div
+                    className="w-2 h-2 rounded-full"
+                    style={{ background: categoryMap[category]?.color }}
+                  />
+                  <h3 className="text-sm font-semibold uppercase tracking-wider">
+                    {categoryMap[category]?.label}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill, i) => (
+                    <motion.span
+                      key={skill.name}
+                      className="px-3 py-1.5 text-sm rounded-xl bg-[var(--surface)] border border-[var(--glass-border)] text-foreground hover:border-[var(--neon)]/30 hover:bg-[var(--neon-muted)] transition-all duration-300 cursor-default"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        delay: groupIdx * 0.1 + i * 0.04,
+                        duration: 0.3,
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {skill.name}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
