@@ -69,13 +69,13 @@ export default function ProjectsPage() {
 
           {/* Search & filters */}
           <motion.div
-            className="flex flex-col md:flex-row gap-4 mb-10"
+            className="flex flex-col md:flex-row-reverse gap-4 mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative w-full md:w-[400px] shrink-0 flex items-center">
               <Search
                 size={16}
                 className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
@@ -85,7 +85,8 @@ export default function ProjectsPage() {
                 placeholder="Search projects..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 rounded-xl glass-card text-sm placeholder:text-muted-foreground focus:outline-none focus:border-[var(--neon)]/30 transition-colors"
+                style={{ color: "inherit" }}
+                className="w-full h-12 pl-10 pr-10 rounded-xl bg-[var(--surface)] border border-[var(--glass-border)] text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-[var(--neon)]/40 focus:ring-2 focus:ring-[var(--neon)]/20 transition-all appearance-none"
               />
               {search && (
                 <button
