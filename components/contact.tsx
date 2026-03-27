@@ -185,15 +185,41 @@ export function Contact() {
 }
 
 export function Footer() {
+  const socials = [
+    { icon: GithubIcon, label: "GitHub", href: SITE.socials.github },
+    { icon: LinkedinIcon, label: "LinkedIn", href: SITE.socials.linkedin },
+    { icon: TwitterIcon, label: "Twitter", href: SITE.socials.twitter },
+    { icon: InstagramIcon, label: "Instagram", href: SITE.socials.instagram },
+  ];
+
   return (
     <footer className="border-t border-[var(--glass-border)] py-8 px-6">
-      <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </p>
-        <p className="text-xs text-muted-foreground/60">
-          Built with Next.js, Tailwind CSS & Framer Motion
-        </p>
+
+        <div className="flex items-center gap-4">
+          {socials.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              className="text-muted-foreground hover:text-[var(--neon)] transition-colors duration-300"
+            >
+              <social.icon size={18} />
+            </a>
+          ))}
+        </div>
+
+        <a
+          href={`mailto:${SITE.email}`}
+          className="text-xs text-muted-foreground/60 hover:text-[var(--neon)] transition-colors duration-300"
+        >
+          {SITE.email}
+        </a>
       </div>
     </footer>
   );
