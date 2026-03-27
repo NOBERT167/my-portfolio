@@ -8,8 +8,7 @@ export const SITE = {
   resumeUrl: "#",
   socials: {
     github: "https://github.com/NOBERT167",
-    linkedin:
-      "https://www.linkedin.com/in/langat-kipkoech-nobert-ab44661ba/",
+    linkedin: "https://www.linkedin.com/in/langat-kipkoech-nobert-ab44661ba/",
     twitter: "https://twitter.com/darkcode1999",
     instagram: "https://www.instagram.com/nobert.dev/",
   },
@@ -110,8 +109,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "CodeGenius Backend",
-    description:
-      "Backend service for CodeGenius, built with Python.",
+    description: "Backend service for CodeGenius, built with Python.",
     tech: ["Python", "Jinja", "Backend"],
     github: "https://github.com/NOBERT167/CodeGenius_Backend",
   },
@@ -153,8 +151,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Text Editor",
-    description:
-      "Desktop text editor application built with C#.",
+    description: "Desktop text editor application built with C#.",
     tech: ["C#", ".NET", "Desktop"],
     github: "https://github.com/NOBERT167/text-editor",
   },
@@ -167,15 +164,13 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Afrinova",
-    description:
-      "Web project showcasing African innovation and design.",
+    description: "Web project showcasing African innovation and design.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/NOBERT167/Afrinova",
   },
   {
     title: "SAYS",
-    description:
-      "Website for the Kericho Diocese Youth community.",
+    description: "Website for the Kericho Diocese Youth community.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/NOBERT167/SAYS",
   },
@@ -199,6 +194,63 @@ export const PROJECTS: Project[] = [
       "Backend database service for the ShopYangu product management platform.",
     tech: ["JavaScript", "Node.js", "Database"],
     github: "https://github.com/NOBERT167/shop-yanguDB",
+  },
+];
+
+export interface Experience {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  highlights: string[];
+  link?: string;
+}
+
+export const EXPERIENCES: Experience[] = [
+  {
+    role: "Full-Stack Developer",
+    company: "Greencom Enterprise Solutions",
+    location: "Nairobi, Kenya",
+    period: "June 2024 — Present",
+    highlights: [
+      "Modernized legacy ASP.NET Framework MVC applications by migrating to ASP.NET Core + React.js (TypeScript, Tailwind CSS, ShadCN), improving maintainability, performance, and user experience.",
+      "Designed and built secure, scalable RESTful APIs using ASP.NET Core and Node.js, enforcing OWASP security standards across all endpoints.",
+      "Built an AI-powered OData MVC code generator that automates production-ready ASP.NET MVC scaffolding from Business Central schemas — cutting development time by 85%.",
+      "Maintained legacy ASP.NET MVC portals and jQuery-based frontends, resolving bugs and shipping incremental feature improvements.",
+      "Collaborated in cross-functional teams using Git/GitHub workflows, conducting code reviews and managing CI/CD pipelines via Jenkins and GitHub Actions.",
+      "Developed and integrated enterprise web portals — Employee Self-Service, E-Recruitment, E-Procurement, and CRM — with Microsoft Dynamics 365 Business Central ERP, serving hundreds of end-users across multiple client organizations.",
+    ],
+  },
+  {
+    role: "ICT Technician",
+    company: "Holy Trinity Kimatisio Parish",
+    location: "Bomet, Kenya",
+    period: "May 2023 — June 2024",
+    highlights: [
+      "Developed a document management database system to digitize records, improving retrieval efficiency and reducing paper-based processes.",
+      "Designed digital assets for parish events; provided day-to-day ICT support including hardware troubleshooting and software configuration.",
+    ],
+  },
+  {
+    role: "Web Developer & Designer",
+    company: "Saint Anthony Youth Service (SAYS)",
+    location: "Kericho, Kenya",
+    period: "Oct 2023 — June 2024",
+    highlights: [
+      "Developed a responsive website for the diocese's youth department.",
+      "Designed event posters and flyers for various initiatives.",
+    ],
+    link: "https://alphadev13-cdkstanthonyyouthservice.mdbgo.io/",
+  },
+  {
+    role: "ICT Intern",
+    company: "Bomet University College",
+    location: "Bomet, Kenya",
+    period: "Sept 2022 — Dec 2022",
+    highlights: [
+      "Contributed to an open-source GitHub project, gaining hands-on collaborative version control experience.",
+      "Supported web development, network optimization, and server management across the university's IT environment.",
+    ],
   },
 ];
 
@@ -226,6 +278,7 @@ export const SKILLS = [
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
