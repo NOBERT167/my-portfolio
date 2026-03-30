@@ -33,7 +33,7 @@ export function Experience() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4.75 md:left-5.75 top-0 bottom-0 w-px bg-glass-border" />
+          <div className="absolute left-4.75 md:left-5.75 top-0 bottom-0 w-px bg-accent" />
 
           <div className="space-y-8">
             {EXPERIENCES.map((exp, idx) => (
@@ -64,16 +64,28 @@ export function Experience() {
                 >
                   <div className="relative z-10">
                     {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
+                    <motion.div
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                    >
                       <h3 className="text-lg md:text-xl font-semibold text-foreground">
                         {exp.role}
                       </h3>
                       <span className="text-xs tracking-wider text-muted-foreground font-mono">
                         {exp.period}
                       </span>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <motion.div
+                      className="flex flex-wrap items-center gap-3 mb-4"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 + 0.25, duration: 0.4 }}
+                    >
                       <span className="flex items-center gap-1.5 text-sm text-neon">
                         <Briefcase size={14} />
                         {exp.company}
@@ -93,18 +105,25 @@ export function Experience() {
                           Website
                         </a>
                       )}
-                    </div>
+                    </motion.div>
 
                     {/* Highlights */}
                     <ul className="space-y-2">
                       {exp.highlights.map((highlight, i) => (
-                        <li
+                        <motion.li
                           key={i}
                           className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
+                          initial={{ opacity: 0, x: -15 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: idx * 0.1 + 0.35 + i * 0.07,
+                            duration: 0.35,
+                          }}
                         >
                           <span className="mt-1.5 min-w-1.5 h-1.5 rounded-full bg-(--neon)/50" />
                           {highlight}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
