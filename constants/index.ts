@@ -255,24 +255,58 @@ export const EXPERIENCES: Experience[] = [
 ];
 
 export const SKILLS = [
+  // Languages
   { name: "TypeScript", category: "language" },
   { name: "JavaScript", category: "language" },
   { name: "C#", category: "language" },
-  { name: "Python", category: "language" },
+
+  // Frontend
   { name: "React", category: "frontend" },
   { name: "Next.js", category: "frontend" },
   { name: "Tailwind CSS", category: "frontend" },
+  { name: "ShadCN", category: "frontend" },
   { name: "Framer Motion", category: "frontend" },
+  { name: "TanStack Query", category: "frontend" },
+  { name: "Redux", category: "frontend" },
+  { name: "RTK Query", category: "frontend" },
+  { name: "Zustand", category: "frontend" },
+  { name: "jQuery", category: "frontend" },
+  { name: "Bootstrap", category: "frontend" },
+
+  // Backend
   { name: "Node.js", category: "backend" },
   { name: "ASP.NET Core", category: "backend" },
+  { name: "ASP.NET MVC", category: "backend" },
   { name: "Express", category: "backend" },
-  { name: "MongoDB", category: "backend" },
-  { name: "PostgreSQL", category: "backend" },
   { name: "REST APIs", category: "backend" },
+  { name: "GraphQL", category: "backend" },
+  { name: "OData", category: "backend" },
+
+  // Databases
+  { name: "SQL Server", category: "database" },
+  { name: "PostgreSQL", category: "database" },
+  { name: "MySQL", category: "database" },
+  { name: "MongoDB", category: "database" },
+  { name: "SQLite", category: "database" },
+
+  // Tools
   { name: "Git", category: "tools" },
   { name: "Figma", category: "tools" },
-  { name: "Docker", category: "tools" },
-  { name: "Vercel", category: "tools" },
+  { name: "Vite", category: "tools" },
+  { name: "VS Code", category: "tools" },
+  { name: "Visual Studio", category: "tools" },
+
+  // DevOps & Cloud
+  { name: "GitHub Actions", category: "devops" },
+  { name: "Jenkins", category: "devops" },
+  { name: "Docker", category: "devops" },
+  { name: "Vercel", category: "devops" },
+  { name: "AWS", category: "devops" },
+  { name: "Azure", category: "devops" },
+
+  // Testing
+  { name: "Vitest", category: "testing" },
+  { name: "Jest", category: "testing" },
 ];
 
 export const NAV_LINKS = [
