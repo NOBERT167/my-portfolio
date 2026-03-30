@@ -69,7 +69,7 @@ export function About() {
                 </span>{" "}
                 based in Nairobi, Kenya. I specialize in building modern,
                 performant web applications using React, Next.js, TypeScript,
-                and ASP.NET Core.
+                Node.js, and ASP.NET Core.
               </p>
               <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
                 I&apos;ve published{" "}
