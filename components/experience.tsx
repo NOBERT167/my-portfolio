@@ -16,7 +16,7 @@ export function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-neon mb-3">
@@ -42,7 +42,7 @@ export function Experience() {
                 className="relative pl-12 md:pl-16"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
               >
                 {/* Timeline dot */}
@@ -68,7 +68,7 @@ export function Experience() {
                       className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
                     >
                       <h3 className="text-lg md:text-xl font-semibold text-foreground">
@@ -83,7 +83,7 @@ export function Experience() {
                       className="flex flex-wrap items-center gap-3 mb-4"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{ delay: idx * 0.1 + 0.25, duration: 0.4 }}
                     >
                       <span className="flex items-center gap-1.5 text-sm text-neon">
@@ -115,7 +115,7 @@ export function Experience() {
                           className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
                           initial={{ opacity: 0, x: -15 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: false }}
                           transition={{
                             delay: idx * 0.1 + 0.35 + i * 0.07,
                             duration: 0.35,

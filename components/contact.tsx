@@ -40,7 +40,7 @@ export function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
@@ -65,7 +65,7 @@ export function Contact() {
             className="md:col-span-7 glass-card noise spotlight-card rounded-3xl p-8 md:p-10 group block hover:border-[var(--neon)]/20 transition-all duration-500"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.1, duration: 0.5 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -101,7 +101,7 @@ export function Contact() {
             className="md:col-span-5 glass-card noise spotlight-card rounded-3xl p-8 flex flex-col justify-between"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2, duration: 0.5 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -152,7 +152,7 @@ export function Contact() {
               className="md:col-span-3 glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-3 group hover:border-[var(--neon)]/20 transition-all duration-500"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();

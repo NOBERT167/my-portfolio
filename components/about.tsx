@@ -19,7 +19,7 @@ export function About() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
         >
           <motion.p
             className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3"
@@ -47,7 +47,7 @@ export function About() {
             className="md:col-span-2 glass-card noise spotlight-card rounded-3xl p-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2, duration: 0.6 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -108,7 +108,7 @@ export function About() {
                 className="glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-4 hover:border-[var(--neon)]/20 transition-colors duration-300"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();

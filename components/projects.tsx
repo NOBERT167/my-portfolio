@@ -31,7 +31,7 @@ export function ProjectCard({
         hover:border-[var(--neon)]/20 transition-all duration-500`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ delay: index * 0.08, duration: 0.5 }}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -118,7 +118,7 @@ export function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
@@ -147,7 +147,7 @@ export function Projects() {
           className="flex justify-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <Link
