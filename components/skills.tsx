@@ -33,7 +33,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
@@ -58,7 +58,7 @@ export function Skills() {
                 }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: groupIdx * 0.1, duration: 0.5 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -86,10 +86,10 @@ export function Skills() {
                     {skills.map((skill, i) => (
                       <motion.span
                         key={skill.name}
-                        className="px-3 py-1.5 text-sm rounded-xl bg-[var(--surface)] border border-[var(--glass-border)] text-foreground hover:border-[var(--neon)]/30 hover:bg-[var(--neon-muted)] transition-all duration-300 cursor-default"
+                        className="px-3 py-1.5 text-sm rounded-xl border border-(--neon)/30 bg-(--neon-muted) text-foreground hover:bg-(--neon)/20 hover:border-(--neon)/60 hover:text-(--neon) hover:shadow-[0_0_12px_var(--neon-muted)] transition-all duration-300 cursor-default"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{
                           delay: groupIdx * 0.1 + i * 0.04,
                           duration: 0.3,
