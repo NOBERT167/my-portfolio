@@ -25,6 +25,27 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    title: "Devpulse",
+    description:
+      "Full-stack developer community blog platform built with Node.js, Express 5, MongoDB, and React 19 + TypeScript. Features include AI-powered post generation via OpenAI GPT, Clerk authentication with role-based access control, Cloudinary image uploads, Docker containerisation, and Google Cloud Build CI/CD. Demonstrates end-to-end backend architecture, API security (Helmet, rate limiting, CORS), and production deployment discipline.",
+    tech: [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "OpenAI GPT",
+      "Clerk Auth",
+      "Cloudinary",
+      "Docker",
+      "Google Cloud  Build",
+      "CI/CD",
+    ],
+    github: "https://github.com/NOBERT167/devpulse",
+    live: "https://dev-pulse-blond.vercel.app/",
+    featured: true,
+  },
+  {
     title: "react-spotlight-search",
     description:
       "A beautiful, accessible command palette / spotlight search for React apps. Cmd+K ready. Published on npm with 2+ stars.",
