@@ -69,7 +69,7 @@ export function Loader({ onComplete }: { onComplete: () => void }) {
               Nobert<span className="text-[#a855f7]">.</span>
             </span>
             <span className="text-xs tracking-[0.3em] uppercase text-white/40">
-              Loading experience
+              Full-stack Developer
             </span>
           </motion.div>
         </motion.div>
