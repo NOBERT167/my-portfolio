@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { SITE } from "@/constants";
 
 const GithubIcon = () => (
@@ -78,6 +78,17 @@ export function Hero() {
               <p className="mt-6 max-w-lg text-base md:text-lg text-muted-foreground leading-relaxed">
                 {SITE.description}
               </p>
+              <motion.a
+                href="/resume.pdf"
+                download
+                className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--neon-muted)] hover:bg-[var(--neon)]/30 border border-[var(--neon)]/20 text-sm font-medium transition-all duration-300 hover:scale-105"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 3.7, duration: 0.5 }}
+              >
+                <Download size={16} />
+                Download Resume
+              </motion.a>
             </div>
           </motion.div>
 
