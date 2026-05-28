@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Nobert Langat",
-  title: "Full-Stack Developer & UI/UX Designer",
+  title: "Full-Stack Developer",
   description:
     "I craft performant web experiences with clean code and sharp design. Based in Nairobi, Kenya.",
   email: "nobertlangat@gmail.com",
@@ -25,9 +25,18 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    title: "Portfolio",
+    description:
+      "This portfolio — built with Next.js, Tailwind CSS, and Framer Motion. Features a dark-themed design system, smooth scroll animations, a categorized skills grid, and a timeline-based experience section.",
+    tech: ["TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/NOBERT167/my-portfolio",
+    live: "https://nobertdev.vercel.app",
+    featured: true,
+  },
+  {
     title: "Devpulse",
     description:
-      "Full-stack developer community blog platform built with Node.js, Express 5, MongoDB, and React 19 + TypeScript. Features include AI-powered post generation via OpenAI GPT, Clerk authentication with role-based access control, Cloudinary image uploads, Docker containerisation, and Google Cloud Build CI/CD. Demonstrates end-to-end backend architecture, API security (Helmet, rate limiting, CORS), and production deployment discipline.",
+      "Full-stack developer community platform where engineers can read and publish technical posts. Includes AI-assisted post generation via OpenAI GPT, role-based access with Clerk Auth, Cloudinary image handling, and a Docker-containerized backend deployed via Google Cloud Build CI/CD.",
     tech: [
       "TypeScript",
       "React",
@@ -38,7 +47,7 @@ export const PROJECTS: Project[] = [
       "Clerk Auth",
       "Cloudinary",
       "Docker",
-      "Google Cloud  Build",
+      "Google Cloud Build",
       "CI/CD",
     ],
     github: "https://github.com/NOBERT167/devpulse",
@@ -46,9 +55,18 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    title: "CodeGenius",
+    description:
+      "AI-powered scaffolding tool that reads Microsoft Business Central OData schemas and generates production-ready ASP.NET MVC code — reducing manual scaffolding time by 85%. Used internally at Greencom Enterprise Solutions.",
+    tech: ["TypeScript", "Next.js", "Tailwind CSS", "ShadCN", "Framer Motion"],
+    github: "",
+    live: "https://mvcgenerator.vercel.app",
+    featured: true,
+  },
+  {
     title: "react-spotlight-search",
     description:
-      "A beautiful, accessible command palette / spotlight search for React apps. Cmd+K ready. Published on npm with 2+ stars.",
+      "Accessible command palette for React apps. Supports Cmd+K / Ctrl+K keyboard shortcuts, fuzzy search, and fully custom action handlers. Zero config to get started. Published on npm.",
     tech: ["TypeScript", "React", "npm"],
     github: "https://github.com/NOBERT167/react-spotlight-search",
     live: "https://www.npmjs.com/package/react-spotlight-search",
@@ -57,7 +75,7 @@ export const PROJECTS: Project[] = [
   {
     title: "react-confirm-dialog",
     description:
-      "Lightweight, fully customizable confirmation dialog hook that replaces window.confirm() with beautiful async modals. Zero dependencies.",
+      "Drop-in replacement for window.confirm() that renders beautiful async modals instead. Fully customizable via a hook API, zero dependencies, and works with any React UI library.",
     tech: ["TypeScript", "React", "npm"],
     github: "https://github.com/NOBERT167/react-confirm-dialog",
     live: "https://www.npmjs.com/package/react-confirm-dialog",
@@ -66,7 +84,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Audispot",
     description:
-      "Full-stack car marketplace website built with TypeScript. Features listings, search, and a modern responsive UI.",
+      "Car marketplace with full search, filtering, and responsive listing pages. Built with Next.js and Tailwind CSS, with a clean UI focused on fast browsing and easy navigation.",
     tech: ["TypeScript", "Next.js", "Tailwind CSS"],
     github: "https://github.com/NOBERT167/audispot",
     featured: true,
@@ -74,146 +92,132 @@ export const PROJECTS: Project[] = [
   {
     title: "Seminar Management",
     description:
-      "Frontend + ASP.NET Core Web API for managing seminars, integrating with Microsoft Dynamics 365 Business Central.",
+      "Enterprise frontend for managing seminar registrations and logistics, integrated with Microsoft Dynamics 365 Business Central via a custom ASP.NET Core API.",
     tech: ["TypeScript", "React", "C#", "ASP.NET Core"],
     github: "https://github.com/NOBERT167/Seminar-Management",
     featured: true,
   },
   {
+    title: "EazySell",
+    description:
+      "Full-stack e-commerce platform for listing, browsing, and managing products. Built on the MERN stack with JWT authentication, product CRUD, and a responsive storefront.",
+    tech: ["JavaScript", "MongoDB", "Express", "React", "Node.js"],
+    github: "https://github.com/NOBERT167/EazySell",
+    featured: true,
+  },
+  {
+    title: "Seminar Management API",
+    description:
+      "RESTful API backend for the Seminar Management system. Handles registration logic and syncs data bidirectionally with Microsoft Dynamics 365 Business Central.",
+    tech: ["C#", "ASP.NET Core", "Business Central"],
+    github: "https://github.com/NOBERT167/Seminar-Management-API",
+  },
+  {
     title: "ShopYangu",
     description:
-      "Product & shop management web app built with React and Next.js. Features product listing, CRUD forms, and shop association.",
+      "Shop and product management app with full CRUD, search, and shop-to-product association. Built with Next.js and React as a frontend-focused project.",
     tech: ["TypeScript", "Next.js", "React"],
     github: "https://github.com/NOBERT167/ShopYangu",
   },
   {
     title: "Hotel Booking API",
     description:
-      "A RESTful API for booking hotel rooms, built with C# and ASP.NET Core.",
+      "RESTful API for hotel room reservations. Covers room availability, booking creation, and cancellation, built with C# and ASP.NET Core following REST conventions.",
     tech: ["C#", "ASP.NET Core", "REST API"],
     github: "https://github.com/NOBERT167/HotelBookingAPI",
   },
   {
     title: "react-3d-icon",
     description:
-      "3D icon component for React applications. Published as an npm package.",
+      "Lightweight React component for rendering 3D-style icons inside web UIs. Configurable size, color, and depth. Published on npm.",
     tech: ["JavaScript", "React", "npm"],
     github: "https://github.com/NOBERT167/react-3d-icon",
+    live: "https://www.npmjs.com/package/react-3d-icon",
   },
   {
-    title: "Blog App",
+    title: "Devpulse Blog",
     description:
-      "Full-stack blog application built with the MERN stack — MongoDB, Express, React, and Node.js.",
+      "Full-stack blogging app built on the MERN stack with user authentication, rich text posts, and a comment system. Served as the foundation for the more advanced Devpulse platform.",
     tech: ["JavaScript", "MongoDB", "Express", "React", "Node.js"],
     github: "https://github.com/NOBERT167/Blog-app",
   },
   {
-    title: "Seminar Management API",
-    description:
-      "REST API for seminar management that integrates with Microsoft Dynamics 365 Business Central.",
-    tech: ["C#", "ASP.NET Core", "Business Central"],
-    github: "https://github.com/NOBERT167/Seminar-Management-API",
-  },
-  {
     title: "ASP.NET Core + React Auth",
     description:
-      "Full-stack authentication app with user registration, login, and protected routes. Frontend powered by React, Vite, and Tailwind CSS.",
+      "Full-stack authentication starter with user registration, login, JWT session handling, and protected routes. Frontend built with React, Vite, and Tailwind CSS.",
     tech: ["C#", "ASP.NET Core", "React", "Vite", "Tailwind CSS"],
     github: "https://github.com/NOBERT167/aaspnetcore-react-auth-app",
   },
   {
-    title: "BC ASP.NET Core API",
-    description:
-      "ASP.NET Core Web API for managing instructor records within Microsoft Dynamics 365 Business Central via RESTful CRUD operations.",
-    tech: ["C#", "ASP.NET Core", "Business Central"],
-    github: "https://github.com/NOBERT167/BC-ASP.NET-CORE",
-  },
-  {
     title: "CodeGenius Backend",
-    description: "Backend service for CodeGenius, built with Python.",
+    description:
+      "Python service powering CodeGenius. Parses Business Central OData metadata and uses Jinja templating to generate structured ASP.NET MVC scaffolding on demand.",
     tech: ["Python", "Jinja", "Backend"],
-    github: "https://github.com/NOBERT167/CodeGenius_Backend",
+    github: "",
   },
   {
-    title: "Blogista",
+    title: "Postly",
     description:
-      "Full-stack blog built with Next.js, Sanity CMS, Tailwind CSS, and TypeScript.",
-    tech: ["TypeScript", "Next.js", "Sanity", "Tailwind CSS"],
-    github: "https://github.com/NOBERT167/Blogista",
-    live: "https://blogista.netlify.app/",
-  },
-  {
-    title: "EnatonTest",
-    description:
-      "Social media application where users can login, post, and comment on other posts.",
+      "Social feed app where users can sign up, create posts, and comment on others. Demonstrates full-stack CRUD with React and Node.js.",
     tech: ["JavaScript", "React", "Node.js"],
-    github: "https://github.com/NOBERT167/EnatonTest",
-  },
-  {
-    title: "E-Marketing App",
-    description:
-      "Full-stack e-marketing MERN application for product marketing and management.",
-    tech: ["JavaScript", "MongoDB", "Express", "React", "Node.js"],
-    github: "https://github.com/NOBERT167/emarketing-web-application",
+    github: "https://github.com/NOBERT167/Postly",
   },
   {
     title: "REST API in C#",
     description:
-      "A simple REST API for user registration and login built with C# and ASP.NET Core.",
+      "Minimal REST API covering user registration and login with ASP.NET Core. A clean reference implementation of authentication endpoints in C#.",
     tech: ["C#", "ASP.NET Core", "REST API"],
     github: "https://github.com/NOBERT167/Rest-API-in-C-",
   },
   {
+    title: "Fitness Zone",
+    description:
+      "A modern gym website landinga page with a sleek UI, modern UI/UX, animations and responsive design.",
+    tech: ["React", "Framer Motion", "styled-components"],
+    github: "https://github.com/NOBERT167/gym-website",
+    live: "https://fitness-zone.netlify.app/",
+  },
+  {
     title: "Jokes App",
     description:
-      "Web application built using C# and ASP.NET Core MVC where users can create, edit, delete, and view jokes.",
+      "CRUD web app built with ASP.NET Core MVC where users can browse, add, edit, and delete jokes. A clean demonstration of the MVC pattern in C#.",
     tech: ["C#", "ASP.NET Core", "MVC"],
     github: "https://github.com/NOBERT167/Jokes-App",
   },
   {
     title: "Text Editor",
-    description: "Desktop text editor application built with C#.",
+    description:
+      "Desktop text editor built with C# and .NET. Supports file open, save, and basic text formatting — a practical Windows Forms project.",
     tech: ["C#", ".NET", "Desktop"],
     github: "https://github.com/NOBERT167/text-editor",
   },
   {
     title: "TenderSite",
     description:
-      "UI for tenders featuring a landing page, login page, and tenders listing page.",
+      "Multi-page tender portal UI with a landing page, login flow, and a searchable tenders listing. Built with vanilla HTML, CSS, and JavaScript.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/NOBERT167/TenderSite",
+    live: "https://nobert167.github.io/TenderSite/",
   },
   {
     title: "Afrinova",
-    description: "Web project showcasing African innovation and design.",
+    description:
+      "Web project celebrating African innovation, built with clean HTML and CSS. Focuses on typography, layout, and visual storytelling.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/NOBERT167/Afrinova",
   },
   {
     title: "SAYS",
-    description: "Website for the Kericho Diocese Youth community.",
+    description:
+      "Website for the Saint Anthony Youth Service (Kericho Diocese). Covers events, announcements, and community information for the diocese's youth wing.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/NOBERT167/SAYS",
   },
   {
-    title: "AL Code Snippets",
-    description:
-      "Code snippets for basic AL programming language in Business Central 24.",
-    tech: ["AL", "Business Central"],
-    github: "https://github.com/NOBERT167/Al-Code-snippets",
-  },
-  {
-    title: "E-Commerce Landing Page",
-    description:
-      "E-commerce landing page built using Next.js 13 and Tailwind CSS.",
-    tech: ["Next.js", "Tailwind CSS"],
-    github: "https://github.com/NOBERT167/ecommerce-landing-page",
-  },
-  {
     title: "ShopYangu DB",
     description:
-      "Backend database service for the ShopYangu product management platform.",
-    tech: ["JavaScript", "Node.js", "Database"],
+      "Mock REST backend for the ShopYangu project, powered by JSON Server. Lets frontend developers prototype and test shop management UIs without a real backend.",
+    tech: ["JavaScript", "Node.js", "JSON Server"],
     github: "https://github.com/NOBERT167/shop-yanguDB",
   },
 ];
@@ -280,6 +284,7 @@ export const SKILLS = [
   { name: "TypeScript", category: "language" },
   { name: "JavaScript", category: "language" },
   { name: "C#", category: "language" },
+  { name: "Python", category: "language" },
 
   // Frontend
   { name: "React", category: "frontend" },
