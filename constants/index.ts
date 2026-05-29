@@ -50,8 +50,8 @@ export const PROJECTS: Project[] = [
       "Google Cloud Build",
       "CI/CD",
     ],
-    github: "https://github.com/NOBERT167/devpulse",
-    live: "https://dev-pulse-blond.vercel.app/",
+    github: "",
+    live: "https://www.devpulse.blog",
     featured: true,
   },
   {
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
       "Drop-in replacement for window.confirm() that renders beautiful async modals instead. Fully customizable via a hook API, zero dependencies, and works with any React UI library.",
     tech: ["TypeScript", "React", "npm"],
     github: "https://github.com/NOBERT167/react-confirm-dialog",
-    live: "https://www.npmjs.com/package/react-confirm-dialog",
+    live: "https://www.npmjs.com/package/@nobertdev/react-confirm-dialog",
     featured: true,
   },
   {
@@ -132,7 +132,7 @@ export const PROJECTS: Project[] = [
       "Lightweight React component for rendering 3D-style icons inside web UIs. Configurable size, color, and depth. Published on npm.",
     tech: ["JavaScript", "React", "npm"],
     github: "https://github.com/NOBERT167/react-3d-icon",
-    live: "https://www.npmjs.com/package/react-3d-icon",
+    live: "https://www.npmjs.com/package/@nobertdev/react-3d-icons",
   },
   {
     title: "Devpulse Blog",
