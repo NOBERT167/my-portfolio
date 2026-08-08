@@ -21,9 +21,199 @@ export interface Project {
   github: string;
   live?: string;
   featured?: boolean;
+  image?: string;
 }
 
 export const PROJECTS: Project[] = [
+ {
+    title: "Judiciary of Kenya Supplier Portal",
+    description:
+      "A production e-procurement platform that enables suppliers to discover tenders, submit bids, upload documents, provide financial responses, manage tender security, and track procurement activities.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "RTK Query",
+      "Tailwind CSS",
+      "ASP.NET Core",
+      "C#",
+      "REST API",
+      
+      "OData",
+      "SOAP",
+    ],
+    github: "",
+    live: "https://supplier.judiciary.go.ke/",
+    featured: true,
+    image: "/projects/supplier-portal.png",
+  },
+  {
+    title: "Judiciary of Kenya Contractors Portal",
+    description:
+      "A contract management platform for approved contractors and suppliers to manage active contracts, payment requests, instructions, amendments, extensions, approvals, practical completion, and defect workflows.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "ASP.NET Core",
+      "C#",
+      "REST API",
+      "SQL Server",
+      
+      "OData",
+      "SOAP",
+    ],
+    github: "",
+    live: "https://contractors.judiciary.go.ke/",
+    featured: true,
+    image: "/projects/contractor-portal.png",
+  },
+  {
+    title: "NUPEA Supplier Portal",
+    description:
+      "A supplier management and procurement portal supporting supplier registration, profile management, document submission, procurement opportunities, and enterprise system integration.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Tailwind CSS",
+      "ASP.NET Core",
+      "C#",
+      "REST API",
+      
+      "OData",
+      "SOAP",
+    ],
+    github: "",
+    live: "https://suppliers.nuclear.co.ke:8086/",
+    featured: true,
+    image: "",
+  },
+  {
+    title: "PPRA E-Recruitment Portal",
+    description:
+      "A responsive recruitment platform for publishing vacancies and managing candidate applications, including job search, filtering, pagination, validation, and applicant workflows.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Redux Toolkit",
+      "Tailwind CSS",
+      "ASP.NET Core",
+      "REST API",
+      "SQL Server",
+    ],
+    github: "",
+    live: "https://erp.ppra.go.ke/",
+    featured: true,
+    image: "/projects/ppra-recruitment.png",
+  },
+  {
+    title: "DevPulse",
+    description:
+      "An AI-powered developer community platform for publishing articles, discussions, comments, search, media management, and intelligent content creation.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Clerk",
+      "OpenAI API",
+      "Cloudinary",
+      "Docker",
+      "Google Cloud Build",
+    ],
+    github: "",
+    live: "https://devpulse.blog/",
+    featured: true,
+    image: "/projects/devpulse.png",
+  },
+  {
+    title: "AI-Powered OData MVC Code Generator",
+    description:
+      "An AI-powered development tool that generates ASP.NET MVC, API, frontend, and backend code from Microsoft Dynamics 365 Business Central OData schemas, reducing repetitive development work by approximately 85%.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "OpenAI API",
+      "OData",   
+      "ASP.NET MVC",
+      "C#",
+    ],
+    github: "",
+    live: "https://mvcgenerator.vercel.app/",
+    featured: true,
+    image: "/projects/mvc-generator.png",
+  },
+  {
+    title: "Employee Self-Service Platform",
+    description:
+      "An enterprise employee self-service platform supporting leave, claims, imprest, training, payment requests, salary advances, and other internal HR and finance workflows.",
+    tech: [
+      "React",
+      "TypeScript",
+      "ASP.NET Core",
+      "C#",
+      "SQL Server",
+      "REST API",     
+      "OData",
+      "SOAP",
+      "M-Pesa Daraja API",
+    ],
+    github: "",
+    live: "",
+    featured: false,
+    image: "",
+  },
+  {
+    title: "AudiSpot254",
+    description:
+      "An e-commerce and automotive platform for browsing Audi vehicle parts, accessories, merchandise, and blog content with integrated digital payment workflows.",
+    tech: [
+      "React",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Paystack",
+      "REST API",
+    ],
+    github: "",
+    live: "",
+    featured: false,
+    image: "",
+  },
+  {
+    title: "React Spotlight Search",
+    description:
+      "A reusable React package for implementing fast and customizable spotlight-style search experiences in web applications.",
+    tech: ["React", "TypeScript", "NPM", "JavaScript"],
+    github: "",
+    live: "https://www.npmjs.com/package/@nobertdev/react-spotlight-search",
+    featured: false,
+    image: "/projects/react-spotlight-search.png",
+  },
+  {
+    title: "React Confirm Dialog",
+    description:
+      "A reusable and customizable React confirmation dialog package designed for confirmation workflows and destructive user actions.",
+    tech: ["React", "TypeScript", "NPM", "JavaScript"],
+    github: "",
+    live: "https://www.npmjs.com/package/@nobertdev/react-confirm-dialog",
+    featured: false,
+    image: "/projects/react-confirm-dialog.png",
+  },
+  {
+    title: "React 3D Icons",
+    description:
+      "A reusable React component library providing 3D-style icons for modern web interfaces and interactive applications.",
+    tech: ["React", "TypeScript", "NPM", "JavaScript"],
+    github: "",
+    live: "https://www.npmjs.com/package/@nobertdev/react-3d-icons",
+    featured: false,
+    image: "/projects/react-3d-icons.png",
+  },
   {
     title: "Portfolio",
     description:
@@ -32,70 +222,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/NOBERT167/my-portfolio",
     live: "https://nobertdev.vercel.app",
     featured: true,
-  },
-  {
-    title: "Devpulse",
-    description:
-      "Full-stack developer community platform where engineers can read and publish technical posts. Includes AI-assisted post generation via OpenAI GPT, role-based access with Clerk Auth, Cloudinary image handling, and a Docker-containerized backend deployed via Google Cloud Build CI/CD.",
-    tech: [
-      "TypeScript",
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "OpenAI GPT",
-      "Clerk Auth",
-      "Cloudinary",
-      "Docker",
-      "Google Cloud Build",
-      "CI/CD",
-    ],
-    github: "",
-    live: "https://www.devpulse.blog",
-    featured: true,
-  },
-  {
-    title: "CodeGenius",
-    description:
-      "AI-powered scaffolding tool that reads Microsoft Business Central OData schemas and generates production-ready ASP.NET MVC code — reducing manual scaffolding time by 85%. Used internally at Greencom Enterprise Solutions.",
-    tech: ["TypeScript", "Next.js", "Tailwind CSS", "ShadCN", "Framer Motion"],
-    github: "",
-    live: "https://mvcgenerator.vercel.app",
-    featured: true,
-  },
-  {
-    title: "react-spotlight-search",
-    description:
-      "Accessible command palette for React apps. Supports Cmd+K / Ctrl+K keyboard shortcuts, fuzzy search, and fully custom action handlers. Zero config to get started. Published on npm.",
-    tech: ["TypeScript", "React", "npm"],
-    github: "https://github.com/NOBERT167/react-spotlight-search",
-    live: "https://www.npmjs.com/package/react-spotlight-search",
-    featured: true,
-  },
-  {
-    title: "react-confirm-dialog",
-    description:
-      "Drop-in replacement for window.confirm() that renders beautiful async modals instead. Fully customizable via a hook API, zero dependencies, and works with any React UI library.",
-    tech: ["TypeScript", "React", "npm"],
-    github: "https://github.com/NOBERT167/react-confirm-dialog",
-    live: "https://www.npmjs.com/package/@nobertdev/react-confirm-dialog",
-    featured: true,
-  },
-  {
-    title: "Audispot",
-    description:
-      "Car marketplace with full search, filtering, and responsive listing pages. Built with Next.js and Tailwind CSS, with a clean UI focused on fast browsing and easy navigation.",
-    tech: ["TypeScript", "Next.js", "Tailwind CSS"],
-    github: "https://github.com/NOBERT167/audispot",
-    featured: true,
-  },
-  {
-    title: "Seminar Management",
-    description:
-      "Enterprise frontend for managing seminar registrations and logistics, integrated with Microsoft Dynamics 365 Business Central via a custom ASP.NET Core API.",
-    tech: ["TypeScript", "React", "C#", "ASP.NET Core"],
-    github: "https://github.com/NOBERT167/Seminar-Management",
-    featured: true,
+    image: "",
   },
   {
     title: "EazySell",
@@ -106,68 +233,14 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
-    title: "Seminar Management API",
-    description:
-      "RESTful API backend for the Seminar Management system. Handles registration logic and syncs data bidirectionally with Microsoft Dynamics 365 Business Central.",
-    tech: ["C#", "ASP.NET Core", "Business Central"],
-    github: "https://github.com/NOBERT167/Seminar-Management-API",
-  },
-  {
     title: "ShopYangu",
     description:
       "Shop and product management app with full CRUD, search, and shop-to-product association. Built with Next.js and React as a frontend-focused project.",
     tech: ["TypeScript", "Next.js", "React"],
     github: "https://github.com/NOBERT167/ShopYangu",
-  },
-  {
-    title: "Hotel Booking API",
-    description:
-      "RESTful API for hotel room reservations. Covers room availability, booking creation, and cancellation, built with C# and ASP.NET Core following REST conventions.",
-    tech: ["C#", "ASP.NET Core", "REST API"],
-    github: "https://github.com/NOBERT167/HotelBookingAPI",
-  },
-  {
-    title: "react-3d-icon",
-    description:
-      "Lightweight React component for rendering 3D-style icons inside web UIs. Configurable size, color, and depth. Published on npm.",
-    tech: ["JavaScript", "React", "npm"],
-    github: "https://github.com/NOBERT167/react-3d-icon",
-    live: "https://www.npmjs.com/package/@nobertdev/react-3d-icons",
-  },
-  {
-    title: "Devpulse Blog",
-    description:
-      "Full-stack blogging app built on the MERN stack with user authentication, rich text posts, and a comment system. Served as the foundation for the more advanced Devpulse platform.",
-    tech: ["JavaScript", "MongoDB", "Express", "React", "Node.js"],
-    github: "https://github.com/NOBERT167/Blog-app",
-  },
-  {
-    title: "ASP.NET Core + React Auth",
-    description:
-      "Full-stack authentication starter with user registration, login, JWT session handling, and protected routes. Frontend built with React, Vite, and Tailwind CSS.",
-    tech: ["C#", "ASP.NET Core", "React", "Vite", "Tailwind CSS"],
-    github: "https://github.com/NOBERT167/aaspnetcore-react-auth-app",
-  },
-  {
-    title: "CodeGenius Backend",
-    description:
-      "Python service powering CodeGenius. Parses Business Central OData metadata and uses Jinja templating to generate structured ASP.NET MVC scaffolding on demand.",
-    tech: ["Python", "Jinja", "Backend"],
-    github: "",
-  },
-  {
-    title: "Postly",
-    description:
-      "Social feed app where users can sign up, create posts, and comment on others. Demonstrates full-stack CRUD with React and Node.js.",
-    tech: ["JavaScript", "React", "Node.js"],
-    github: "https://github.com/NOBERT167/Postly",
-  },
-  {
-    title: "REST API in C#",
-    description:
-      "Minimal REST API covering user registration and login with ASP.NET Core. A clean reference implementation of authentication endpoints in C#.",
-    tech: ["C#", "ASP.NET Core", "REST API"],
-    github: "https://github.com/NOBERT167/Rest-API-in-C-",
+    image: "/projects/shop-yangu.png",
+    live: "https://shop-yangu-phi.vercel.app",
+    featured: false,
   },
   {
     title: "Fitness Zone",
@@ -176,49 +249,18 @@ export const PROJECTS: Project[] = [
     tech: ["React", "Framer Motion", "styled-components"],
     github: "https://github.com/NOBERT167/gym-website",
     live: "https://fitness-zone.netlify.app/",
-  },
-  {
-    title: "Jokes App",
-    description:
-      "CRUD web app built with ASP.NET Core MVC where users can browse, add, edit, and delete jokes. A clean demonstration of the MVC pattern in C#.",
-    tech: ["C#", "ASP.NET Core", "MVC"],
-    github: "https://github.com/NOBERT167/Jokes-App",
-  },
-  {
-    title: "Text Editor",
-    description:
-      "Desktop text editor built with C# and .NET. Supports file open, save, and basic text formatting — a practical Windows Forms project.",
-    tech: ["C#", ".NET", "Desktop"],
-    github: "https://github.com/NOBERT167/text-editor",
-  },
-  {
-    title: "TenderSite",
-    description:
-      "Multi-page tender portal UI with a landing page, login flow, and a searchable tenders listing. Built with vanilla HTML, CSS, and JavaScript.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/NOBERT167/TenderSite",
-    live: "https://nobert167.github.io/TenderSite/",
+    image: "/projects/fitness-zone.png",
+    featured: false,
   },
   {
     title: "Afrinova",
     description:
       "Web project celebrating African innovation, built with clean HTML and CSS. Focuses on typography, layout, and visual storytelling.",
     tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/NOBERT167/Afrinova",
-  },
-  {
-    title: "SAYS",
-    description:
-      "Website for the Saint Anthony Youth Service (Kericho Diocese). Covers events, announcements, and community information for the diocese's youth wing.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/NOBERT167/SAYS",
-  },
-  {
-    title: "ShopYangu DB",
-    description:
-      "Mock REST backend for the ShopYangu project, powered by JSON Server. Lets frontend developers prototype and test shop management UIs without a real backend.",
-    tech: ["JavaScript", "Node.js", "JSON Server"],
-    github: "https://github.com/NOBERT167/shop-yanguDB",
+    github: "",
+    live: "https://nobert167.github.io/Afrinova",
+    image: "/projects/afrinova.png",
+    featured: false,
   },
 ];
 
