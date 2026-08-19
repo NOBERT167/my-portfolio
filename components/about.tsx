@@ -14,12 +14,12 @@ const fadeUp = {
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32 px-6">
-      <div className="mx-auto max-w-5xl">
+    <section id="about" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <motion.p
             className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3"
@@ -35,7 +35,7 @@ export function About() {
           >
             Crafting code with
             <br />
-            <span className="bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent">
+            <span className="text-[var(--neon)]">
               intention & care
             </span>
           </motion.h2>
@@ -47,7 +47,7 @@ export function About() {
             className="md:col-span-2 glass-card noise spotlight-card rounded-3xl p-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -108,7 +108,7 @@ export function About() {
                 className="glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-4 hover:border-[var(--neon)]/20 transition-colors duration-300"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();

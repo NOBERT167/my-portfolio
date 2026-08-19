@@ -6,17 +6,17 @@ import { EXPERIENCES } from "@/constants";
 
 export function Experience() {
   return (
-    <section id="experience" className="relative py-24 md:py-32 px-6">
+    <section id="experience" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
       <div
-        className="gradient-orb w-75 h-75 top-0 right-0 bg-purple-500/10"
-        style={{ animationDelay: "2s" }}
+        className="gradient-orb right-0 top-0 h-75 w-75 bg-[var(--neon-muted)]"
+        aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-neon mb-3">
@@ -24,7 +24,7 @@ export function Experience() {
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-12">
             Work{" "}
-            <span className="bg-linear-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent">
+            <span className="text-[var(--neon)]">
               Experience
             </span>
           </h2>
@@ -42,7 +42,7 @@ export function Experience() {
                 className="relative pl-12 md:pl-16"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
               >
                 {/* Timeline dot */}
@@ -68,7 +68,7 @@ export function Experience() {
                       className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
                     >
                       <h3 className="text-lg md:text-xl font-semibold text-foreground">
@@ -83,7 +83,7 @@ export function Experience() {
                       className="flex flex-wrap items-center gap-3 mb-4"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 + 0.25, duration: 0.4 }}
                     >
                       <span className="flex items-center gap-1.5 text-sm text-neon">
@@ -115,7 +115,7 @@ export function Experience() {
                           className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
                           initial={{ opacity: 0, x: -15 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: false }}
+                          viewport={{ once: true }}
                           transition={{
                             delay: idx * 0.1 + 0.35 + i * 0.07,
                             duration: 0.35,

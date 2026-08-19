@@ -30,17 +30,17 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 px-6">
+    <section id="contact" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
       <div
-        className="gradient-orb w-[400px] h-[400px] bottom-0 right-0 bg-purple-500/10"
-        style={{ animationDelay: "6s" }}
+        className="gradient-orb bottom-0 right-0 h-[400px] w-[400px] bg-[var(--neon-muted)]"
+        aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
@@ -48,7 +48,7 @@ export function Contact() {
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Let&apos;s work{" "}
-            <span className="bg-gradient-to-r from-[#a855f7] to-[#ec4899] bg-clip-text text-transparent">
+            <span className="text-[var(--neon)]">
               together
             </span>
           </h2>
@@ -65,7 +65,7 @@ export function Contact() {
             className="md:col-span-7 glass-card noise spotlight-card rounded-3xl p-8 md:p-10 group block hover:border-[var(--neon)]/20 transition-all duration-500"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -86,7 +86,7 @@ export function Contact() {
                 </div>
                 <span className="text-sm text-muted-foreground">Email me</span>
               </div>
-              <p className="text-2xl md:text-3xl font-bold tracking-tight group-hover:text-[var(--neon)] transition-colors duration-300">
+              <p className="break-all text-xl font-bold tracking-tight transition-colors duration-300 group-hover:text-[var(--neon)] sm:text-2xl md:text-3xl">
                 {SITE.email}
                 <ArrowUpRight
                   size={24}
@@ -101,7 +101,7 @@ export function Contact() {
             className="md:col-span-5 glass-card noise spotlight-card rounded-3xl p-8 flex flex-col justify-between"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -152,7 +152,7 @@ export function Contact() {
               className="md:col-span-3 glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-3 group hover:border-[var(--neon)]/20 transition-all duration-500"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
@@ -194,7 +194,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-[var(--glass-border)] py-8 px-6">
-      <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </p>
@@ -207,7 +207,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="text-muted-foreground hover:text-[var(--neon)] transition-colors duration-300"
+              className="grid size-11 place-items-center rounded-xl text-muted-foreground transition-colors duration-300 hover:bg-[var(--surface-raised)] hover:text-[var(--neon)]"
             >
               <social.icon size={18} />
             </a>

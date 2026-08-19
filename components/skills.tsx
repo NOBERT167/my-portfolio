@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { SKILLS } from "@/constants";
-import { data } from "framer-motion/client";
 
 const categoryMap: Record<string, { label: string; color: string }> = {
   language: { label: "Languages", color: "#a855f7" },
@@ -23,17 +22,17 @@ export function Skills() {
   }, {});
 
   return (
-    <section id="skills" className="relative py-24 md:py-32 px-6">
+    <section id="skills" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
       <div
-        className="gradient-orb w-[300px] h-[300px] top-0 left-0 bg-indigo-500/10"
-        style={{ animationDelay: "3s" }}
+        className="gradient-orb left-0 top-0 h-[300px] w-[300px] bg-[var(--neon-muted)]"
+        aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
@@ -58,7 +57,7 @@ export function Skills() {
                 }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: groupIdx * 0.1, duration: 0.5 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -89,7 +88,7 @@ export function Skills() {
                         className="px-3 py-1.5 text-sm rounded-xl border border-(--neon)/30 bg-(--neon-muted) text-foreground hover:bg-(--neon)/20 hover:border-(--neon)/60 hover:text-(--neon) hover:shadow-[0_0_12px_var(--neon-muted)] transition-all duration-300 cursor-default"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{
                           delay: groupIdx * 0.1 + i * 0.04,
                           duration: 0.3,

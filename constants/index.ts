@@ -245,7 +245,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Fitness Zone",
     description:
-      "A modern gym website landinga page with a sleek UI, modern UI/UX, animations and responsive design.",
+      "A modern gym landing page with a sleek interface, purposeful motion, and a responsive experience across devices.",
     tech: ["React", "Framer Motion", "styled-components"],
     github: "https://github.com/NOBERT167/gym-website",
     live: "https://fitness-zone.netlify.app/",
@@ -378,9 +378,9 @@ export const SKILLS = [
 ];
 
 export const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Contact", href: "/#contact" },
 ];

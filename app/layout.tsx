@@ -10,13 +10,14 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nobertdev.vercel.app"),
   title: "Nobert Langat — Full-Stack Developer",
   description:
-    "I craft performant web experiences with clean code and sharp design. Based in Nairobi, Kenya.",
+    "Full-stack developer and UI/UX designer building reliable web products with React, Next.js, Node.js, and ASP.NET Core.",
   openGraph: {
     title: "Nobert Langat — Full-Stack Developer",
     description:
-      "I craft performant web experiences with clean code and sharp design.",
+      "Full-stack developer and UI/UX designer building clear, reliable digital products.",
     type: "website",
   },
 };
@@ -37,7 +38,9 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }
