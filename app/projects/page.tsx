@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Search, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { useDeferredValue, useState } from "react";
@@ -70,9 +70,9 @@ export default function ProjectsPage() {
       >
         <div className="hero-grid opacity-50" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto max-w-7xl">
           <motion.header
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
@@ -87,8 +87,9 @@ export default function ProjectsPage() {
             <div className="grid gap-6 border-b border-[var(--glass-border)] pb-10 md:grid-cols-12 md:items-end">
               <div className="md:col-span-8">
                 <p className="eyebrow">Project archive</p>
-                <h1 className="mt-3 text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-6xl md:text-7xl">
-                  Work across products, platforms, and open source.
+                <h1 className="mt-3 text-balance text-[clamp(2.35rem,10vw,3rem)] font-semibold tracking-[-0.052em] sm:text-6xl md:text-7xl">
+                  Work across products, platforms, and{" "}
+                  <span className="gradient-text">open source.</span>
                 </h1>
               </div>
               <p className="max-w-md text-base leading-7 text-muted-foreground md:col-span-4 md:justify-self-end">
@@ -100,8 +101,8 @@ export default function ProjectsPage() {
 
           <motion.section
             aria-label="Project filters"
-            className="surface-card sticky top-24 z-30 my-8 rounded-2xl p-3 sm:p-4"
-            initial={{ opacity: 0, y: 16 }}
+            className="surface-card relative my-8 rounded-2xl p-3 sm:p-4"
+            initial={{ y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.4 }}
           >
@@ -122,7 +123,7 @@ export default function ProjectsPage() {
                       aria-pressed={isActive}
                       className={`min-h-11 shrink-0 rounded-xl px-4 text-sm font-medium transition-colors duration-200 ${
                         isActive
-                          ? "bg-[var(--neon)] text-[var(--neon-foreground)]"
+                          ? "gradient-button text-[var(--neon-foreground)]"
                           : "text-muted-foreground hover:bg-[var(--surface-raised)] hover:text-foreground"
                       }`}
                     >
@@ -182,37 +183,47 @@ export default function ProjectsPage() {
             ) : null}
           </div>
 
-          {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              {filtered.map((project, index) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                  index={index}
-                  isBento={false}
-                />
-              ))}
-            </div>
-          ) : (
-            <motion.div
-              className="surface-card flex min-h-72 flex-col items-center justify-center rounded-[1.75rem] px-6 text-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              role="status"
-            >
-              <p className="text-xl font-semibold">No matching projects</p>
-              <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
-                Try a broader search or reset the active category.
-              </p>
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="mt-6 min-h-11 rounded-xl bg-[var(--neon)] px-4 text-sm font-semibold text-[var(--neon-foreground)]"
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filtered.length > 0 ? (
+              <motion.div
+                key="project-grid"
+                layout
+                className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"
               >
-                Show all projects
-              </button>
-            </motion.div>
-          )}
+                <AnimatePresence mode="popLayout">
+                  {filtered.map((project, index) => (
+                    <ProjectCard
+                      key={project.title}
+                      project={project}
+                      index={index}
+                      variant="archive"
+                    />
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty-projects"
+                className="surface-card flex min-h-72 flex-col items-center justify-center rounded-[1.75rem] px-6 text-center"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                role="status"
+              >
+                <p className="text-xl font-semibold">No matching projects</p>
+                <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
+                  Try a broader search or reset the active category.
+                </p>
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="gradient-button mt-6 min-h-11 rounded-xl px-4 text-sm font-semibold text-[var(--neon-foreground)]"
+                >
+                  Show all projects
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </main>
       <Footer />
