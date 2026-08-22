@@ -5,13 +5,13 @@ import { SKILLS } from "@/constants";
 
 const categoryMap: Record<string, { label: string; color: string }> = {
   language: { label: "Languages", color: "#a855f7" },
-  frontend: { label: "Frontend", color: "#6366f1" },
-  backend: { label: "Backend", color: "#ec4899" },
-  tools: { label: "Tools", color: "#f59e0b" },
-  testing: { label: "Testing", color: "#10b981" },
+  frontend: { label: "Frontend", color: "#7c3aed" },
+  backend: { label: "Backend", color: "#8b5cf6" },
+  tools: { label: "Tools", color: "#6366f1" },
+  testing: { label: "Testing", color: "#4f46e5" },
   cloud: { label: "Cloud", color: "#3b82f6" },
-  database: { label: "Databases", color: "#14b8a6" },
-  devops: { label: "DevOps", color: "#f97316" },
+  database: { label: "Databases", color: "#2563eb" },
+  devops: { label: "DevOps", color: "#60a5fa" },
 };
 
 export function Skills() {
@@ -22,7 +22,7 @@ export function Skills() {
   }, {});
 
   return (
-    <section id="skills" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
+    <section id="skills" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div
         className="gradient-orb left-0 top-0 h-[300px] w-[300px] bg-[var(--neon-muted)]"
         aria-hidden="true"
@@ -30,7 +30,7 @@ export function Skills() {
 
       <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -39,7 +39,7 @@ export function Skills() {
             Tech stack
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-12">
-            Skills & Tools
+            Skills &amp; <span className="gradient-text">Tools</span>
           </h2>
         </motion.div>
 
@@ -55,7 +55,7 @@ export function Skills() {
                 className={`glass-card noise spotlight-card rounded-2xl p-6 ${
                   span === 2 ? "md:col-span-2" : "md:col-span-1"
                 }`}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: groupIdx * 0.1, duration: 0.5 }}
@@ -86,7 +86,7 @@ export function Skills() {
                       <motion.span
                         key={skill.name}
                         className="px-3 py-1.5 text-sm rounded-xl border border-(--neon)/30 bg-(--neon-muted) text-foreground hover:bg-(--neon)/20 hover:border-(--neon)/60 hover:text-(--neon) hover:shadow-[0_0_12px_var(--neon-muted)] transition-all duration-300 cursor-default"
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        initial={{ scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{
