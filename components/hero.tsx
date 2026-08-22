@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS, SITE } from "@/constants";
+import { OrbitingSkills } from "./OrbitingSkills";
 
 const GithubIcon = () => (
   <svg
@@ -39,143 +40,157 @@ const reveal = {
   animate: { opacity: 1, y: 0 },
 };
 
+const HERO_STATS = [
+  { value: `${PROJECTS.length}`, label: "Projects & products" },
+  { value: "3+", label: "Open-source packages" },
+  { value: "NBO", label: "Based in Nairobi" },
+  { value: "EAT", label: "Available remotely" },
+];
+
 export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-dvh items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 sm:pt-32"
+      className="relative flex min-h-dvh items-center overflow-hidden px-5 pb-14 pt-28 sm:px-8 sm:pb-16 sm:pt-32"
     >
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
+      <div className="ambient-orb ambient-orb-primary" aria-hidden="true" />
+      <div className="ambient-orb ambient-orb-secondary" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-12 lg:items-stretch">
-        <motion.div
-          className="surface-card flex min-h-[560px] flex-col justify-between rounded-[2rem] p-6 sm:p-10 lg:col-span-8 lg:p-12"
-          {...reveal}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
-          <div>
-            <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
-              <span className="inline-flex min-h-9 items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[var(--surface-raised)] px-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                <span className="size-2 rounded-full bg-[var(--neon)]" />
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(24rem,0.92fr)] lg:gap-12">
+          <motion.div
+            {...reveal}
+            initial={false}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            <div className="mb-8 flex flex-wrap items-center gap-4">
+              <span className="inline-flex min-h-9 items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[var(--surface-raised)] px-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground backdrop-blur-md">
+                <motion.span
+                  className="size-2 rounded-full bg-[var(--neon)]"
+                  animate={{ opacity: [0.55, 1, 0.55], scale: [0.85, 1.15, 0.85] }}
+                  transition={{ duration: 2.2, repeat: Infinity }}
+                />
                 Available for select projects
               </span>
-              <span className="font-mono text-xs text-muted-foreground">
-                NBO / EAT
-              </span>
+              <span className="h-px w-12 bg-[var(--border-strong)]" aria-hidden="true" />
+              <span className="font-mono text-xs text-muted-foreground">NBO / EAT</span>
             </div>
 
-            <p className="mb-4 text-sm font-semibold text-[var(--neon)]">
-              Full-stack engineer &amp; UI/UX designer
-            </p>
-            <h1
-              id="hero-heading"
-              className="max-w-4xl text-balance text-[clamp(3.25rem,8vw,6.8rem)] font-semibold leading-[0.92] tracking-[-0.065em]"
+            <motion.p
+              className="mb-4 text-sm font-semibold text-[var(--neon)]"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.45 }}
             >
-              I turn complex systems into clear digital products.
-            </h1>
-            <p className="mt-7 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              Full-stack engineer &amp; UI/UX designer
+            </motion.p>
+            <motion.h1
+              id="hero-heading"
+              className="max-w-2xl text-balance text-[clamp(2.35rem,3.75vw,3.6rem)] font-semibold leading-[1.03] tracking-[-0.048em]"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.55 }}
+            >
+              I turn complex systems into{" "}
+              <span className="hero-title-gradient">clear digital products.</span>
+            </motion.h1>
+            <motion.p
+              className="mt-7 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.26, duration: 0.5 }}
+            >
               I design and build reliable web platforms across React, Next.js,
               Node.js, and ASP.NET Core—combining product thinking with clean,
               maintainable engineering.
-            </p>
-          </div>
+            </motion.p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/#projects"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--neon)] px-5 text-sm font-semibold text-[var(--neon-foreground)] transition-[filter,transform] duration-200 hover:brightness-95 active:scale-[0.98]"
+            <motion.div
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.34, duration: 0.5 }}
             >
-              Explore selected work
-              <ArrowDownRight size={17} aria-hidden="true" />
-            </Link>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] px-5 text-sm font-semibold transition-colors duration-200 hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)]"
-            >
-              <Download size={17} aria-hidden="true" />
-              Download résumé
-            </a>
-          </div>
-        </motion.div>
+              <Link
+                href="/#projects"
+                className="gradient-button inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold text-[var(--neon-foreground)] hover:brightness-105 active:scale-[0.98]"
+              >
+                Explore selected work
+                <ArrowDownRight size={17} aria-hidden="true" />
+              </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] px-5 text-sm font-semibold backdrop-blur-md transition-colors duration-200 hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)]"
+              >
+                <Download size={17} aria-hidden="true" />
+                Download résumé
+              </a>
+            </motion.div>
 
-        <motion.aside
-          aria-label="Professional summary"
-          className="grid gap-4 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1"
-          {...reveal}
-          transition={{ delay: 0.1, duration: 0.55, ease: "easeOut" }}
-        >
-          <div className="surface-card relative flex min-h-72 flex-col justify-between overflow-hidden rounded-[2rem] p-6 sm:p-8">
-            <div
-              className="absolute -right-12 -top-12 size-48 rounded-full bg-[var(--neon-muted)] blur-3xl"
-              aria-hidden="true"
-            />
-            <div className="relative">
-              <span className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                Currently
+            <motion.div
+              className="mt-8 flex flex-wrap items-center gap-3 text-sm text-muted-foreground"
+              initial={false}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.42, duration: 0.5 }}
+            >
+              <span className="inline-flex items-center gap-2">
+                <MapPin size={16} className="text-[var(--neon)]" aria-hidden="true" />
+                {SITE.location}
               </span>
-              <p className="mt-4 text-2xl font-semibold leading-tight tracking-tight">
-                Building enterprise tools that make difficult workflows feel
-                simple.
-              </p>
-            </div>
-            <div className="relative mt-10 flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin size={17} className="text-[var(--neon)]" aria-hidden="true" />
-              {SITE.location} · Open to remote
-            </div>
-          </div>
+              <span aria-hidden="true">·</span>
+              <a
+                href={SITE.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid size-10 place-items-center rounded-full border border-[var(--glass-border)] bg-[var(--surface-raised)] transition-colors hover:border-[var(--border-strong)] hover:text-foreground"
+                aria-label="View Nobert's GitHub profile"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href={SITE.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid size-10 place-items-center rounded-full border border-[var(--glass-border)] bg-[var(--surface-raised)] transition-colors hover:border-[var(--border-strong)] hover:text-foreground"
+                aria-label="View Nobert's LinkedIn profile"
+              >
+                <LinkedinIcon />
+              </a>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="inline-flex min-h-10 items-center gap-1 font-semibold text-foreground transition-colors hover:text-[var(--neon)]"
+              >
+                Email me
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            </motion.div>
+          </motion.div>
+          <OrbitingSkills />
+        </div>
 
-          <div className="surface-card rounded-[2rem] p-6 sm:p-8">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-[var(--surface-raised)] p-4">
-                <p className="text-3xl font-semibold tracking-tight">3+</p>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  npm packages published
-                </p>
-              </div>
-              <div className="rounded-2xl bg-[var(--surface-raised)] p-4">
-                <p className="text-3xl font-semibold tracking-tight">
-                  {PROJECTS.length}
-                </p>
-                <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                  projects &amp; products
-                </p>
-              </div>
+        <motion.dl
+          className="mt-14 grid grid-cols-2 border-y border-[var(--glass-border)] sm:grid-cols-4 lg:mt-12"
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.42, duration: 0.5 }}
+        >
+          {HERO_STATS.map((stat, index) => (
+            <div
+              key={stat.label}
+              className={`py-5 sm:px-5 ${
+                index % 2 ? "border-l border-[var(--glass-border)] pl-5" : "pr-5"
+              } ${index > 1 ? "border-t border-[var(--glass-border)] sm:border-t-0" : ""} ${
+                index > 0 ? "sm:border-l sm:border-[var(--glass-border)]" : ""
+              }`}
+            >
+              <dd className="text-2xl font-semibold tracking-[-0.04em]">{stat.value}</dd>
+              <dt className="mt-1 text-xs leading-5 text-muted-foreground">{stat.label}</dt>
             </div>
-
-            <div className="mt-5 flex items-center justify-between border-t border-[var(--glass-border)] pt-5">
-              <span className="text-sm text-muted-foreground">Find me online</span>
-              <div className="flex gap-2">
-                <a
-                  href={SITE.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="grid size-11 place-items-center rounded-xl bg-[var(--surface-raised)] text-muted-foreground transition-colors hover:text-foreground"
-                  aria-label="View Nobert's GitHub profile"
-                >
-                  <GithubIcon />
-                </a>
-                <a
-                  href={SITE.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="grid size-11 place-items-center rounded-xl bg-[var(--surface-raised)] text-muted-foreground transition-colors hover:text-foreground"
-                  aria-label="View Nobert's LinkedIn profile"
-                >
-                  <LinkedinIcon />
-                </a>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="grid size-11 place-items-center rounded-xl bg-[var(--neon)] text-[var(--neon-foreground)] transition-[filter,transform] hover:brightness-95 active:scale-[0.98]"
-                  aria-label="Email Nobert"
-                >
-                  <ArrowUpRight size={18} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.aside>
+          ))}
+        </motion.dl>
       </div>
     </section>
   );
