@@ -19,7 +19,7 @@ const projects = [
     github: "",
     live: "https://supplier.judiciary.go.ke/",
     featured: true,
-    image: "/projects/supplier-portal.png",
+    image: "/projects/supplier-new.png",
   },
   {
     title: "Judiciary of Kenya Contractors Portal",
@@ -40,7 +40,7 @@ const projects = [
     github: "",
     live: "https://contractors.judiciary.go.ke/",
     featured: true,
-    image: "/projects/contractor-portal.png",
+    image: "/projects/contractor-new.png",
   },
   {
     title: "NUPEA Supplier Portal",
@@ -61,7 +61,7 @@ const projects = [
     github: "",
     live: "https://suppliers.nuclear.co.ke:8086/",
     featured: true,
-    image: "",
+    image: "/projects/nupea-supplier-new.png",
   },
   {
     title: "PPRA E-Recruitment Portal",
@@ -100,7 +100,7 @@ const projects = [
     github: "",
     live: "https://devpulse.blog/",
     featured: true,
-    image: "/projects/devpulse.png",
+    image: "/projects/devpulse-new.png",
   },
   {
     title: "AI-Powered OData MVC Code Generator",
@@ -118,7 +118,7 @@ const projects = [
     github: "",
     live: "https://mvcgenerator.vercel.app/",
     featured: true,
-    image: "/projects/mvc-generator.png",
+    image: "/projects/mvc-generator-new.png",
   },
   {
     title: "Employee Self-Service Platform",
@@ -183,8 +183,9 @@ const projects = [
     tech: ["React", "TypeScript", "NPM", "JavaScript"],
     github: "",
     live: "https://www.npmjs.com/package/@nobertdev/react-spotlight-search",
+    docs: "https://github.com/NOBERT167/react-spotlight#readme",
     featured: false,
-    image: "/projects/react-spotlight-search.png",
+    image: "/projects/react-spotlight-search-new.png",
   },
   {
     title: "React Confirm Dialog",
@@ -193,8 +194,9 @@ const projects = [
     tech: ["React", "TypeScript", "NPM", "JavaScript"],
     github: "",
     live: "https://www.npmjs.com/package/@nobertdev/react-confirm-dialog",
+    docs: "https://github.com/NOBERT167/react-confirm-dialog#readme",
     featured: false,
-    image: "/projects/react-confirm-dialog.png",
+    image: "/projects/react-confirm-new.png",
   },
   {
     title: "React 3D Icons",
@@ -203,8 +205,9 @@ const projects = [
     tech: ["React", "TypeScript", "NPM", "JavaScript"],
     github: "",
     live: "https://www.npmjs.com/package/@nobertdev/react-3d-icons",
+    docs: "https://github.com/NOBERT167/react-3d-icons#readme",
     featured: false,
-    image: "/projects/react-3d-icons.png",
+    image: "/projects/react-3d-new.png",
   },
   {
     title: "Portfolio",
@@ -241,7 +244,7 @@ const projects = [
     tech: ["React", "Framer Motion", "styled-components"],
     github: "https://github.com/NOBERT167/gym-website",
     live: "https://fitness-zone.netlify.app/",
-    image: "/projects/fitness-zone.png",
+    image: "/projects/fitness-new.png",
     featured: false,
   },
   {
@@ -251,7 +254,7 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     github: "",
     live: "https://nobert167.github.io/Afrinova",
-    image: "/projects/afrinova.png",
+    image: "/projects/afrinova-new.png",
     featured: false,
   },
 ];
