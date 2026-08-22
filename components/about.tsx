@@ -14,7 +14,7 @@ const fadeUp = {
 
 export function About() {
   return (
-    <section id="about" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
+    <section id="about" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -35,7 +35,7 @@ export function About() {
           >
             Crafting code with
             <br />
-            <span className="text-[var(--neon)]">
+            <span className="gradient-text">
               intention & care
             </span>
           </motion.h2>
@@ -45,7 +45,7 @@ export function About() {
           {/* Bio card — spans 2 cols */}
           <motion.div
             className="md:col-span-2 glass-card noise spotlight-card rounded-3xl p-8"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -106,7 +106,7 @@ export function About() {
               <motion.div
                 key={item.label}
                 className="glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-4 hover:border-[var(--neon)]/20 transition-colors duration-300"
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
