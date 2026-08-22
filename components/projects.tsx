@@ -4,13 +4,29 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
+  BookOpen,
   BriefcaseBusiness,
   ExternalLink,
+  Package,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS } from "@/constants";
 import type { Project } from "@/constants";
+
+const SHOWCASE_TITLES = [
+  "Judiciary of Kenya Supplier Portal",
+  "DevPulse",
+  "AI-Powered OData MVC Code Generator",
+  "React Spotlight Search",
+  "React Confirm Dialog",
+  "React 3D Icons",
+] as const;
+
+const CONTAINED_IMAGE_PATHS = new Set([
+  "/projects/ppra-recruitment.png",
+  "/projects/shop-yangu.png",
+]);
 
 const GithubIcon = () => (
   <svg
@@ -31,40 +47,112 @@ function getProjectType(project: Project) {
   return "Product build";
 }
 
+function ProjectActions({ project }: { project: Project }) {
+  const isNpmPackage = project.tech.includes("NPM");
+
+  return (
+    <div className="flex min-h-11 flex-wrap items-end gap-2">
+      {project.live ? (
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="gradient-button inline-flex min-h-11 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-[var(--neon-foreground)] hover:brightness-105 active:scale-[0.98]"
+          aria-label={
+            isNpmPackage
+              ? `View ${project.title} on npm`
+              : `Visit ${project.title} live site`
+          }
+        >
+          {isNpmPackage ? "View on npm" : "View project"}
+          {isNpmPackage ? (
+            <Package size={15} aria-hidden="true" />
+          ) : (
+            <ExternalLink size={15} aria-hidden="true" />
+          )}
+        </a>
+      ) : null}
+
+      {isNpmPackage && project.docs ? (
+        <a
+          href={project.docs}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] px-4 text-sm font-semibold text-foreground transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)] active:scale-[0.98]"
+          aria-label={`Read ${project.title} documentation`}
+        >
+          Documentation
+          <BookOpen size={15} aria-hidden="true" />
+        </a>
+      ) : null}
+
+      {project.github ? (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] px-4 text-sm font-semibold transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)]"
+          aria-label={`View ${project.title} source code on GitHub`}
+        >
+          <GithubIcon />
+          Source
+        </a>
+      ) : null}
+
+      {!project.live && !project.github ? (
+        <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground">
+          <BriefcaseBusiness size={16} aria-hidden="true" />
+          Private client work
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
 export function ProjectCard({
   project,
   index,
-  isBento = true,
+  variant = "showcase",
 }: {
   project: Project;
   index: number;
-  isBento?: boolean;
+  variant?: "showcase" | "archive";
 }) {
-  const visibleTech = project.tech.slice(0, 4);
+  const visibleTech = project.tech.slice(0, 3);
   const remainingTech = project.tech.length - visibleTech.length;
+  const projectNumber = String(index + 1).padStart(2, "0");
+  const mediaHref = project.live || project.github;
+  const shouldContainImage = project.image
+    ? CONTAINED_IMAGE_PATHS.has(project.image)
+    : false;
 
   return (
     <motion.article
-      className={`project-card surface-card group flex min-w-0 flex-col overflow-hidden rounded-[1.75rem] ${
-        isBento && index === 0 ? "md:col-span-2" : ""
-      }`}
-      initial={{ opacity: 0, y: 24 }}
+      layout="position"
+      className="project-card surface-card group isolate flex min-w-0 flex-col overflow-hidden rounded-[1.6rem]"
+      initial={{ y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ delay: Math.min(index * 0.06, 0.24), duration: 0.45 }}
+      transition={{
+        delay: Math.min(index * 0.055, 0.22),
+        duration: 0.48,
+        ease: [0.16, 1, 0.3, 1],
+        layout: { duration: 0.35 },
+      }}
     >
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-[var(--glass-border)] bg-[var(--surface-raised)]">
+      <div className="project-media relative aspect-video overflow-hidden border-b border-[var(--glass-border)] bg-[#090912]">
         {project.image ? (
           <Image
             src={project.image}
             alt={`Preview of ${project.title}`}
             fill
-            sizes={
-              isBento && index === 0
-                ? "(max-width: 768px) 100vw, 66vw"
-                : "(max-width: 768px) 100vw, 50vw"
-            }
-            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.025]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className={`transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              shouldContainImage
+                ? "object-contain"
+                : "object-cover group-hover:scale-[1.025]"
+            }`}
           />
         ) : (
           <div className="project-fallback absolute inset-0 flex items-end p-6">
@@ -78,24 +166,42 @@ export function ProjectCard({
           </div>
         )}
 
-        <div className="absolute left-4 top-4 flex items-center gap-2">
-          <span className="rounded-full border border-white/15 bg-black/65 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+        {mediaHref ? (
+          <a
+            href={mediaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-[6] rounded-[inherit] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--neon)]"
+            aria-label={`Open ${project.title} ${project.live ? "project" : "source code"}`}
+          >
+            <span className="sr-only">Open {project.title}</span>
+          </a>
+        ) : null}
+
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-3 sm:p-4">
+          <span className="rounded-full border border-white/15 bg-black/70 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md">
             {getProjectType(project)}
           </span>
+          <span className="grid size-9 place-items-center rounded-full border border-white/15 bg-black/70 font-mono text-[10px] tracking-[0.08em] text-white backdrop-blur-md">
+            {projectNumber}
+          </span>
         </div>
+
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-20 bg-gradient-to-t from-black/55 to-transparent"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="text-xl font-semibold leading-tight tracking-[-0.025em] sm:text-2xl">
-            {project.title}
-          </h3>
-          {project.featured ? (
-            <span className="mt-1 size-2 shrink-0 rounded-full bg-[var(--neon)]" title="Featured project">
-              <span className="sr-only">Featured project</span>
-            </span>
-          ) : null}
+      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+        <div className="mb-4 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          <span className="h-px w-8 bg-gradient-to-r from-[var(--neon)] to-[var(--blue)]" />
+          {variant === "showcase" ? "Selected work" : "Project archive"}
         </div>
+
+        <h3 className="min-h-[3.35rem] text-xl font-semibold leading-[1.18] tracking-[-0.03em] sm:text-[1.35rem]">
+          {project.title}
+        </h3>
 
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">
           {project.description}
@@ -117,39 +223,8 @@ export function ProjectCard({
           ) : null}
         </div>
 
-        <div className="mt-6 flex min-h-11 items-end gap-2 border-t border-[var(--glass-border)] pt-4">
-          {project.live ? (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--neon)] px-4 text-sm font-semibold text-[var(--neon-foreground)] transition-[filter,transform] duration-200 hover:brightness-95 active:scale-[0.98]"
-              aria-label={`Visit ${project.title} live site`}
-            >
-              View project
-              <ExternalLink size={15} aria-hidden="true" />
-            </a>
-          ) : null}
-
-          {project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--glass-border)] px-4 text-sm font-semibold transition-colors hover:bg-[var(--surface-raised)]"
-              aria-label={`View ${project.title} source code on GitHub`}
-            >
-              <GithubIcon />
-              Source
-            </a>
-          ) : null}
-
-          {!project.live && !project.github ? (
-            <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground">
-              <BriefcaseBusiness size={16} aria-hidden="true" />
-              Private client work
-            </span>
-          ) : null}
+        <div className="mt-auto border-t border-[var(--glass-border)] pt-5">
+          <ProjectActions project={project} />
         </div>
       </div>
     </motion.article>
@@ -157,20 +232,20 @@ export function ProjectCard({
 }
 
 export function Projects() {
-  const selectedProjects = PROJECTS.filter(
-    (project) => project.featured && project.image,
-  ).slice(0, 5);
+  const selectedProjects = SHOWCASE_TITLES.map((title) =>
+    PROJECTS.find((project) => project.title === title),
+  ).filter((project): project is Project => Boolean(project?.image));
 
   return (
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32"
+      className="relative px-5 py-24 sm:px-8 md:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
-          className="mb-10 flex flex-col justify-between gap-6 md:mb-12 md:flex-row md:items-end"
-          initial={{ opacity: 0, y: 24 }}
+          className="mb-10 grid gap-7 border-b border-[var(--glass-border)] pb-9 md:mb-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end"
+          initial={{ y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.45 }}
@@ -181,7 +256,8 @@ export function Projects() {
               id="projects-heading"
               className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.045em] sm:text-5xl md:text-6xl"
             >
-              Products built for real people and real workflows.
+              Products built for real people and{" "}
+              <span className="gradient-text">real workflows.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
               A focused selection spanning enterprise portals, AI-powered
@@ -189,16 +265,24 @@ export function Projects() {
             </p>
           </div>
 
-          <Link
-            href="/projects"
-            className="hidden min-h-12 shrink-0 items-center gap-2 rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] px-5 text-sm font-semibold transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)] md:inline-flex"
-          >
-            Browse all {PROJECTS.length}
-            <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+          <div className="hidden border-l border-[var(--glass-border)] pl-7 lg:block">
+            <p className="font-mono text-4xl font-semibold tracking-[-0.05em] gradient-text">
+              {String(selectedProjects.length).padStart(2, "0")}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Selected builds across enterprise systems, AI products, and open-source tools.
+            </p>
+            <Link
+              href="/projects"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl text-sm font-semibold text-foreground transition-colors hover:text-[var(--neon)]"
+            >
+              Browse all {PROJECTS.length}
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {selectedProjects.map((project, index) => (
             <ProjectCard
               key={project.title}
@@ -209,8 +293,8 @@ export function Projects() {
         </div>
 
         <motion.div
-          className="mt-8 md:hidden"
-          initial={{ opacity: 0, y: 16 }}
+          className="mt-8 lg:hidden"
+          initial={{ y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
