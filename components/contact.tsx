@@ -30,7 +30,7 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 
 export function Contact() {
   return (
-    <section id="contact" className="relative scroll-mt-24 px-5 py-24 sm:px-8 md:py-32">
+    <section id="contact" className="relative px-5 py-24 sm:px-8 md:py-32">
       <div
         className="gradient-orb bottom-0 right-0 h-[400px] w-[400px] bg-[var(--neon-muted)]"
         aria-hidden="true"
@@ -38,7 +38,7 @@ export function Contact() {
 
       <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -48,7 +48,7 @@ export function Contact() {
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
             Let&apos;s work{" "}
-            <span className="text-[var(--neon)]">
+            <span className="gradient-text">
               together
             </span>
           </h2>
@@ -63,7 +63,7 @@ export function Contact() {
           <motion.a
             href={`mailto:${SITE.email}`}
             className="md:col-span-7 glass-card noise spotlight-card rounded-3xl p-8 md:p-10 group block hover:border-[var(--neon)]/20 transition-all duration-500"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
@@ -99,7 +99,7 @@ export function Contact() {
           {/* Location card */}
           <motion.div
             className="md:col-span-5 glass-card noise spotlight-card rounded-3xl p-8 flex flex-col justify-between"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -150,7 +150,7 @@ export function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="md:col-span-3 glass-card noise spotlight-card rounded-2xl p-5 flex items-center gap-3 group hover:border-[var(--neon)]/20 transition-all duration-500"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
