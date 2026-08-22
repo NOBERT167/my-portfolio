@@ -3,13 +3,70 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import { NAV_LINKS, SITE } from "@/constants";
 import { useDarkMode } from "@/hooks/use-darkmode";
 
 export function Navbar() {
   const { isDark, toggle } = useDarkMode();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      setMenuOpen(false);
+      requestAnimationFrame(() => menuButtonRef.current?.focus());
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (
+        !menuPanelRef.current?.contains(target) &&
+        !menuButtonRef.current?.contains(target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [menuOpen]);
+
+  const handleSectionNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    setMenuOpen(false);
+
+    const targetId = href.split("#")[1];
+    if (pathname !== "/" || !targetId) return;
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    window.history.pushState(null, "", `#${targetId}`);
+    target.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <>
@@ -21,21 +78,22 @@ export function Navbar() {
       </a>
 
       <motion.header
-        className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
-        initial={{ y: -20, opacity: 0 }}
+        className="fixed inset-x-0 top-0 z-50"
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <nav
           aria-label="Primary navigation"
-          className="glass-card mx-auto flex h-16 max-w-6xl items-center justify-between rounded-2xl px-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] sm:px-4"
+          className="glass-card top-navbar"
         >
+          <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-5 sm:px-8">
           <Link
             href="/"
             className="flex min-h-11 items-center gap-3 rounded-xl px-2 focus-visible:outline-none"
             onClick={() => setMenuOpen(false)}
           >
-            <span className="grid size-9 place-items-center rounded-xl bg-[var(--neon)] font-mono text-sm font-bold text-[var(--accent-foreground)]">
+            <span className="brand-mark grid size-9 place-items-center rounded-xl font-mono text-sm font-bold text-[var(--neon-foreground)]">
               NL
             </span>
             <span className="hidden text-sm font-semibold tracking-tight sm:block">
@@ -48,6 +106,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(event) => handleSectionNavigation(event, link.href)}
                 className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:bg-[var(--surface-raised)] hover:text-foreground"
               >
                 {link.label}
@@ -57,6 +116,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-1.5">
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={toggle}
               className="grid size-11 place-items-center rounded-xl text-muted-foreground transition-colors duration-200 hover:bg-[var(--surface-raised)] hover:text-foreground"
@@ -71,7 +131,10 @@ export function Navbar() {
 
             <Link
               href="/#contact"
-              className="hidden min-h-11 items-center gap-2 rounded-xl bg-[var(--neon)] px-4 text-sm font-semibold text-[var(--accent-foreground)] transition-[filter,transform] duration-200 hover:brightness-95 active:scale-[0.98] sm:flex"
+              onClick={(event) =>
+                handleSectionNavigation(event, "/#contact")
+              }
+              className="gradient-button hidden min-h-11 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-[var(--neon-foreground)] hover:brightness-105 active:scale-[0.98] sm:flex"
             >
               Let&apos;s talk
               <ArrowUpRight size={16} aria-hidden="true" />
@@ -92,13 +155,14 @@ export function Navbar() {
               )}
             </button>
           </div>
-        </nav>
+          </div>
 
         <AnimatePresence>
           {menuOpen ? (
             <motion.div
+              ref={menuPanelRef}
               id="mobile-navigation"
-              className="mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-card p-2 shadow-[0_18px_50px_rgba(0,0,0,0.2)] lg:hidden"
+              className="mx-auto max-w-6xl overflow-hidden border-t border-[var(--glass-border)] bg-card/95 px-5 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.18)] sm:px-8 lg:hidden"
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
@@ -109,15 +173,19 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className="flex min-h-12 items-center rounded-xl px-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-[var(--surface-raised)] hover:text-foreground"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(event) =>
+                    handleSectionNavigation(event, link.href)
+                  }
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
                 href="/#contact"
-                className="mt-1 flex min-h-12 items-center justify-between rounded-xl bg-[var(--neon)] px-4 text-sm font-semibold text-[var(--accent-foreground)]"
-                onClick={() => setMenuOpen(false)}
+                className="gradient-button mt-1 flex min-h-12 items-center justify-between rounded-xl px-4 text-sm font-semibold text-[var(--neon-foreground)]"
+                onClick={(event) =>
+                  handleSectionNavigation(event, "/#contact")
+                }
               >
                 Start a conversation
                 <ArrowUpRight size={17} aria-hidden="true" />
@@ -125,6 +193,7 @@ export function Navbar() {
             </motion.div>
           ) : null}
         </AnimatePresence>
+        </nav>
       </motion.header>
     </>
   );
