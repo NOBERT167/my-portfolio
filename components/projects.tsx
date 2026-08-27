@@ -156,7 +156,7 @@ export function ProjectCard({
           />
         ) : (
           <div className="project-fallback absolute inset-0 flex items-end p-6">
-            <span className="font-mono text-5xl font-semibold tracking-[-0.08em] text-foreground/12">
+            <span className="font-mono text-5xl font-semibold tracking-[-0.04em] text-foreground/12">
               {project.title
                 .split(" ")
                 .slice(0, 2)
@@ -254,7 +254,7 @@ export function Projects() {
             <p className="eyebrow">Selected work</p>
             <h2
               id="projects-heading"
-              className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.045em] sm:text-5xl md:text-6xl"
+              className="mt-3 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
             >
               Products built for real people and{" "}
               <span className="gradient-text">real workflows.</span>
@@ -266,7 +266,7 @@ export function Projects() {
           </div>
 
           <div className="hidden border-l border-[var(--glass-border)] pl-7 lg:block">
-            <p className="font-mono text-4xl font-semibold tracking-[-0.05em] gradient-text">
+            <p className="font-mono text-4xl font-semibold tracking-[-0.04em] gradient-text">
               {String(selectedProjects.length).padStart(2, "0")}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">

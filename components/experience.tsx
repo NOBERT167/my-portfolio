@@ -6,7 +6,11 @@ import { EXPERIENCES } from "@/constants";
 
 export function Experience() {
   return (
-    <section id="experience" className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="relative px-5 py-24 sm:px-8 md:py-32"
+    >
       <div
         className="gradient-orb right-0 top-0 h-75 w-75 bg-[var(--neon-muted)]"
         aria-hidden="true"
@@ -19,10 +23,11 @@ export function Experience() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-neon mb-3">
-            Career
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-12">
+          <p className="eyebrow">Career</p>
+          <h2
+            id="experience-heading"
+            className="mb-12 mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
+          >
             Work{" "}
             <span className="gradient-text">
               Experience

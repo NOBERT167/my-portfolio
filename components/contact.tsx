@@ -30,7 +30,11 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 
 export function Contact() {
   return (
-    <section id="contact" className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="relative px-5 py-24 sm:px-8 md:py-32"
+    >
       <div
         className="gradient-orb bottom-0 right-0 h-[400px] w-[400px] bg-[var(--neon-muted)]"
         aria-hidden="true"
@@ -43,10 +47,11 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
-            Get in touch
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+          <p className="eyebrow">Get in touch</p>
+          <h2
+            id="contact-heading"
+            className="mb-4 mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
+          >
             Let&apos;s work{" "}
             <span className="gradient-text">
               together
@@ -86,7 +91,7 @@ export function Contact() {
                 </div>
                 <span className="text-sm text-muted-foreground">Email me</span>
               </div>
-              <p className="break-all text-xl font-bold tracking-tight transition-colors duration-300 group-hover:text-[var(--neon)] sm:text-2xl md:text-3xl">
+              <p className="[overflow-wrap:anywhere] text-xl font-bold tracking-tight transition-colors duration-300 group-hover:text-[var(--neon)] group-focus-visible:text-[var(--neon)] sm:text-2xl md:text-3xl">
                 {SITE.email}
                 <ArrowUpRight
                   size={24}
@@ -166,14 +171,14 @@ export function Contact() {
                 );
               }}
             >
-              <div className="relative z-10 flex items-center gap-3">
-                <span className="text-muted-foreground group-hover:text-[var(--neon)] transition-colors">
+              <div className="relative z-10 flex w-full items-center gap-3">
+                <span className="text-muted-foreground transition-colors group-hover:text-[var(--neon)] group-focus-visible:text-[var(--neon)]">
                   <social.icon size={18} />
                 </span>
                 <span className="text-sm font-medium">{social.label}</span>
                 <ArrowUpRight
                   size={14}
-                  className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 text-[var(--neon)]"
+                  className="ml-auto text-[var(--neon)] opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
                 />
               </div>
             </motion.a>

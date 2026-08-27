@@ -14,7 +14,11 @@ const fadeUp = {
 
 export function About() {
   return (
-    <section id="about" className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative px-5 py-24 sm:px-8 md:py-32"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -22,14 +26,15 @@ export function About() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.p
-            className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3"
+            className="eyebrow"
             variants={fadeUp}
             custom={0}
           >
             About me
           </motion.p>
           <motion.h2
-            className="text-3xl md:text-5xl font-bold tracking-tight mb-12"
+            id="about-heading"
+            className="mb-12 mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
             variants={fadeUp}
             custom={1}
           >
@@ -76,10 +81,10 @@ export function About() {
                 <span className="text-foreground font-medium">
                   open-source npm packages
                 </span>{" "}
-                used by developers worldwide, and I love creating tools that
-                make other developers&apos; lives easier. When I&apos;m not
-                coding, I&apos;m exploring new design patterns and contributing
-                to the open-source community.
+                for developers, and I love creating tools that make other
+                developers&apos; lives easier. When I&apos;m not coding, I&apos;m
+                exploring new design patterns and contributing to the
+                open-source community.
               </p>
             </div>
           </motion.div>
@@ -89,17 +94,17 @@ export function About() {
             {[
               {
                 icon: Code2,
-                label: "Clean Code",
+                label: "Clean code",
                 desc: "Typed, tested, maintainable",
               },
               {
                 icon: Palette,
-                label: "Design Eye",
-                desc: "Pixel-perfect interfaces",
+                label: "Design eye",
+                desc: "Clear, intentional interfaces",
               },
               {
                 icon: Boxes,
-                label: "Full-Stack",
+                label: "Full stack",
                 desc: "Frontend to deployment",
               },
             ].map((item, i) => (

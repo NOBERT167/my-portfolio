@@ -90,7 +90,7 @@ export function Navbar() {
           <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-5 sm:px-8">
           <Link
             href="/"
-            className="flex min-h-11 items-center gap-3 rounded-xl px-2 focus-visible:outline-none"
+            className="flex min-h-11 items-center gap-3 rounded-xl px-2"
             onClick={() => setMenuOpen(false)}
           >
             <span className="brand-mark grid size-9 place-items-center rounded-xl font-mono text-sm font-bold text-[var(--neon-foreground)]">
@@ -116,7 +116,6 @@ export function Navbar() {
 
           <div className="flex items-center gap-1.5">
             <button
-              ref={menuButtonRef}
               type="button"
               onClick={toggle}
               className="grid size-11 place-items-center rounded-xl text-muted-foreground transition-colors duration-200 hover:bg-[var(--surface-raised)] hover:text-foreground"
@@ -141,6 +140,7 @@ export function Navbar() {
             </Link>
 
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
               className="grid size-11 place-items-center rounded-xl text-muted-foreground transition-colors duration-200 hover:bg-[var(--surface-raised)] hover:text-foreground lg:hidden"

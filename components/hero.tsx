@@ -88,7 +88,7 @@ export function Hero() {
             </motion.p>
             <motion.h1
               id="hero-heading"
-              className="max-w-2xl text-balance text-[clamp(2.35rem,3.75vw,3.6rem)] font-semibold leading-[1.03] tracking-[-0.048em]"
+              className="max-w-2xl text-balance text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.04em] sm:text-[3.1rem] lg:text-[3.6rem]"
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.55 }}

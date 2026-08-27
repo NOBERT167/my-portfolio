@@ -87,7 +87,7 @@ export default function ProjectsPage() {
             <div className="grid gap-6 border-b border-[var(--glass-border)] pb-10 md:grid-cols-12 md:items-end">
               <div className="md:col-span-8">
                 <p className="eyebrow">Project archive</p>
-                <h1 className="mt-3 text-balance text-[clamp(2.35rem,10vw,3rem)] font-semibold tracking-[-0.052em] sm:text-6xl md:text-7xl">
+                <h1 className="mt-3 text-balance text-[2.35rem] font-semibold tracking-[-0.04em] sm:text-6xl md:text-7xl">
                   Work across products, platforms, and{" "}
                   <span className="gradient-text">open source.</span>
                 </h1>
