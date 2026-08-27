@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { PROJECTS, SITE } from "@/constants";
-import { OrbitingSkills } from "./OrbitingSkills";
+import { ProductSystem } from "./OrbitingSkills";
 
 const GithubIcon = () => (
   <svg
@@ -168,7 +168,7 @@ export function Hero() {
               </a>
             </motion.div>
           </motion.div>
-          <OrbitingSkills />
+          <ProductSystem />
         </div>
 
         <motion.dl
