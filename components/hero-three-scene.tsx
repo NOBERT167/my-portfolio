@@ -6,7 +6,34 @@ import * as THREE from "three";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const PRECISE_POINTER_QUERY = "(pointer: fine)";
 
-function createSeededRandom(seed = 17) {
+const SYSTEM_LAYERS = [
+  {
+    color: "#a855f7",
+    emissive: "#3b0a57",
+    y: 1.32,
+    node: [1.06, 0.13, 0.5] as const,
+  },
+  {
+    color: "#8b5cf6",
+    emissive: "#28134f",
+    y: 0.45,
+    node: [-1.02, 0.13, -0.48] as const,
+  },
+  {
+    color: "#6366f1",
+    emissive: "#171b52",
+    y: -0.42,
+    node: [1.02, 0.13, -0.48] as const,
+  },
+  {
+    color: "#3b82f6",
+    emissive: "#0b2d58",
+    y: -1.29,
+    node: [-1.06, 0.13, 0.5] as const,
+  },
+] as const;
+
+function createSeededRandom(seed = 29) {
   let state = seed >>> 0;
 
   return () => {
@@ -42,102 +69,127 @@ export function HeroThreeScene() {
     renderer.setClearAlpha(0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.08;
     renderer.domElement.className = "three-scene-canvas";
     renderer.domElement.setAttribute("aria-hidden", "true");
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-    camera.position.set(0, 0, 8.5);
+    camera.position.set(0.15, 0.42, 8.4);
+    camera.lookAt(0, -0.08, 0);
 
     const system = new THREE.Group();
-    system.rotation.set(-0.22, -0.3, 0.08);
+    system.rotation.set(-0.13, -0.42, -0.025);
     scene.add(system);
 
-    const coreGeometry = new THREE.IcosahedronGeometry(1.36, 4);
-    const coreMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color("#8b5cf6"),
-      emissive: new THREE.Color("#28114f"),
-      emissiveIntensity: 0.7,
-      metalness: 0.2,
-      roughness: 0.22,
-      clearcoat: 1,
-      clearcoatRoughness: 0.16,
-      iridescence: 0.72,
-      iridescenceIOR: 1.7,
-      iridescenceThicknessRange: [140, 640],
-      flatShading: true,
-    });
-    const core = new THREE.Mesh(coreGeometry, coreMaterial);
-    system.add(core);
+    const slabGeometry = new THREE.BoxGeometry(2.82, 0.16, 1.62);
+    const edgeGeometry = new THREE.EdgesGeometry(slabGeometry, 20);
+    const nodeGeometry = new THREE.SphereGeometry(0.09, 14, 14);
+    const moduleGeometry = new THREE.BoxGeometry(0.52, 0.045, 0.29);
+    const layerNodes: THREE.Mesh[] = [];
 
-    const shellGeometry = new THREE.IcosahedronGeometry(1.58, 2);
-    const shellMaterial = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#60a5fa"),
+    SYSTEM_LAYERS.forEach((config) => {
+      const material = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(config.color),
+        emissive: new THREE.Color(config.emissive),
+        emissiveIntensity: 0.68,
+        metalness: 0.16,
+        roughness: 0.28,
+        transparent: true,
+        opacity: 0.9,
+      });
+      const layer = new THREE.Mesh(slabGeometry, material);
+      layer.position.y = config.y;
+
+      const edgeMaterial = new THREE.LineBasicMaterial({
+        color: new THREE.Color("#d8d5ff"),
+        transparent: true,
+        opacity: 0.42,
+        depthWrite: false,
+      });
+      const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+      layer.add(edges);
+
+      const nodeMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#ffffff"),
+        emissive: new THREE.Color(config.color),
+        emissiveIntensity: 2.6,
+        metalness: 0.05,
+        roughness: 0.18,
+      });
+      const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+      node.position.set(config.node[0], config.node[1], config.node[2]);
+      layer.add(node);
+
+      system.add(layer);
+      layerNodes.push(node);
+    });
+
+    const moduleMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color("#ffffff"),
       transparent: true,
-      opacity: 0.16,
-      wireframe: true,
+      opacity: 0.2,
       depthWrite: false,
     });
-    const shell = new THREE.Mesh(shellGeometry, shellMaterial);
-    system.add(shell);
+    const modules = new THREE.InstancedMesh(moduleGeometry, moduleMaterial, 12);
+    const moduleTransform = new THREE.Object3D();
+    let moduleIndex = 0;
 
-    const ringGeometryA = new THREE.TorusGeometry(2.18, 0.018, 8, 160);
-    const ringGeometryB = new THREE.TorusGeometry(2.72, 0.012, 8, 180);
-    const violetMaterial = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#a78bfa"),
+    SYSTEM_LAYERS.forEach((layer, layerIndex) => {
+      [-0.82, 0, 0.82].forEach((x, itemIndex) => {
+        moduleTransform.position.set(
+          x,
+          layer.y + 0.115,
+          itemIndex === 1 ? 0.22 : -0.2,
+        );
+        moduleTransform.scale.set(itemIndex === 1 ? 1.1 : 0.82, 1, 1);
+        moduleTransform.updateMatrix();
+        modules.setMatrixAt(moduleIndex, moduleTransform.matrix);
+        modules.setColorAt(
+          moduleIndex,
+          new THREE.Color(SYSTEM_LAYERS[layerIndex].color),
+        );
+        moduleIndex += 1;
+      });
+    });
+    modules.instanceMatrix.needsUpdate = true;
+    if (modules.instanceColor) modules.instanceColor.needsUpdate = true;
+    system.add(modules);
+
+    const spineGeometry = new THREE.CylinderGeometry(0.022, 0.022, 2.72, 10);
+    const spineMaterial = new THREE.MeshBasicMaterial({
+      color: new THREE.Color("#93c5fd"),
       transparent: true,
-      opacity: 0.54,
+      opacity: 0.42,
       depthWrite: false,
     });
-    const blueMaterial = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#60a5fa"),
-      transparent: true,
-      opacity: 0.38,
-      depthWrite: false,
-    });
-    const ringA = new THREE.Mesh(ringGeometryA, violetMaterial);
-    ringA.rotation.set(1.15, 0.28, -0.18);
-    const ringB = new THREE.Mesh(ringGeometryB, blueMaterial);
-    ringB.rotation.set(0.45, 1.12, 0.5);
-    system.add(ringA, ringB);
+    const spine = new THREE.Mesh(spineGeometry, spineMaterial);
+    spine.position.z = 0.04;
+    system.add(spine);
 
-    const nodeGeometry = new THREE.SphereGeometry(0.07, 14, 14);
-    const nodeMaterials = [
+    const packetGeometry = new THREE.SphereGeometry(0.052, 12, 12);
+    const packetMaterials = [
+      new THREE.MeshBasicMaterial({ color: "#f0abfc" }),
       new THREE.MeshBasicMaterial({ color: "#c4b5fd" }),
       new THREE.MeshBasicMaterial({ color: "#7dd3fc" }),
     ];
-    const nodes: THREE.Mesh[] = [];
-    const nodePivots: THREE.Group[] = [];
-
-    for (let index = 0; index < 7; index += 1) {
-      const pivot = new THREE.Group();
-      const node = new THREE.Mesh(nodeGeometry, nodeMaterials[index % 2]);
-      const radius = index % 2 === 0 ? 2.18 : 2.72;
-      node.position.set(radius, 0, 0);
-      pivot.rotation.set(
-        index * 0.47,
-        index * 0.86,
-        index * (Math.PI / 3.5),
-      );
-      pivot.add(node);
-      system.add(pivot);
-      nodes.push(node);
-      nodePivots.push(pivot);
-    }
+    const packets = packetMaterials.map((material, index) => {
+      const packet = new THREE.Mesh(packetGeometry, material);
+      const initialProgress = index / packetMaterials.length;
+      packet.position.set(0, -1.3 + initialProgress * 2.62, 0.06);
+      system.add(packet);
+      return packet;
+    });
 
     const random = createSeededRandom();
-    const pointCount = window.innerWidth < 640 ? 100 : 180;
+    const pointCount = window.innerWidth < 640 ? 70 : 120;
     const pointPositions = new Float32Array(pointCount * 3);
 
     for (let index = 0; index < pointCount; index += 1) {
-      const radius = 3 + random() * 2.7;
-      const theta = random() * Math.PI * 2;
-      const phi = Math.acos(2 * random() - 1);
-      pointPositions[index * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      pointPositions[index * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      pointPositions[index * 3 + 2] = radius * Math.cos(phi);
+      pointPositions[index * 3] = (random() - 0.5) * 7.2;
+      pointPositions[index * 3 + 1] = (random() - 0.5) * 6.6;
+      pointPositions[index * 3 + 2] = -1.6 - random() * 2.8;
     }
 
     const pointGeometry = new THREE.BufferGeometry();
@@ -147,21 +199,33 @@ export function HeroThreeScene() {
     );
     const pointMaterial = new THREE.PointsMaterial({
       color: new THREE.Color("#a78bfa"),
-      size: 0.022,
+      size: 0.026,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.42,
       sizeAttenuation: true,
       depthWrite: false,
     });
     const points = new THREE.Points(pointGeometry, pointMaterial);
-    system.add(points);
+    scene.add(points);
 
-    scene.add(new THREE.AmbientLight("#c4b5fd", 1.8));
-    const violetLight = new THREE.PointLight("#8b5cf6", 18, 18, 2);
-    violetLight.position.set(-3.5, 2.8, 4.5);
+    const grid = new THREE.GridHelper(7.2, 16, "#4f46e5", "#312e81");
+    grid.position.set(0, -1.75, -0.5);
+    const gridMaterials = Array.isArray(grid.material)
+      ? grid.material
+      : [grid.material];
+    gridMaterials.forEach((material) => {
+      material.transparent = true;
+      material.opacity = 0.12;
+      material.depthWrite = false;
+    });
+    scene.add(grid);
+
+    scene.add(new THREE.AmbientLight("#d8d5ff", 1.6));
+    const violetLight = new THREE.PointLight("#8b5cf6", 14, 16, 2);
+    violetLight.position.set(-3.2, 3.1, 4.2);
     scene.add(violetLight);
-    const blueLight = new THREE.PointLight("#38bdf8", 16, 18, 2);
-    blueLight.position.set(3.8, -2.1, 3.5);
+    const blueLight = new THREE.PointLight("#38bdf8", 13, 16, 2);
+    blueLight.position.set(3.2, -2.4, 3.5);
     scene.add(blueLight);
 
     const pointer = new THREE.Vector2();
@@ -169,7 +233,7 @@ export function HeroThreeScene() {
     const timer = new THREE.Timer();
     let isLoopRunning = false;
     let lastRenderedAt = 0;
-    const frameInterval = 1000 / 60;
+    const frameInterval = 1000 / 45;
 
     const render = () => renderer.render(scene, camera);
 
@@ -182,20 +246,22 @@ export function HeroThreeScene() {
       pointer.x = THREE.MathUtils.damp(pointer.x, pointerTarget.x, 3, delta);
       pointer.y = THREE.MathUtils.damp(pointer.y, pointerTarget.y, 3, delta);
 
-      system.rotation.y = -0.3 + elapsed * 0.075 + pointer.x * 0.16;
-      system.rotation.x = -0.22 + Math.sin(elapsed * 0.42) * 0.045 - pointer.y * 0.12;
-      core.rotation.y = elapsed * 0.16;
-      core.rotation.x = elapsed * 0.09;
-      shell.rotation.y = -elapsed * 0.11;
-      shell.rotation.z = elapsed * 0.075;
-      ringA.rotation.z = -0.18 + elapsed * 0.08;
-      ringB.rotation.z = 0.5 - elapsed * 0.055;
-      points.rotation.y = -elapsed * 0.018;
+      system.rotation.y =
+        -0.42 + Math.sin(elapsed * 0.22) * 0.025 + pointer.x * 0.12;
+      system.rotation.x = -0.13 - pointer.y * 0.085;
+      system.position.y = Math.sin(elapsed * 0.48) * 0.025;
+      points.rotation.z = Math.sin(elapsed * 0.08) * 0.018;
 
-      nodePivots.forEach((pivot, index) => {
-        pivot.rotation.z += (index % 2 === 0 ? 0.096 : -0.072) * delta;
-        nodes[index].scale.setScalar(
-          0.82 + Math.sin(elapsed * 1.7 + index) * 0.18,
+      packets.forEach((packet, index) => {
+        const progress = (elapsed * 0.16 + index / packets.length) % 1;
+        packet.position.y = -1.3 + progress * 2.62;
+        packet.position.x = Math.sin(progress * Math.PI * 2 + index) * 0.045;
+        packet.scale.setScalar(0.82 + Math.sin(elapsed * 2.2 + index) * 0.16);
+      });
+
+      layerNodes.forEach((node, index) => {
+        node.scale.setScalar(
+          0.88 + Math.sin(elapsed * 1.8 + index * 0.9) * 0.13,
         );
       });
 
@@ -225,8 +291,11 @@ export function HeroThreeScene() {
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, width < 480 ? 1.25 : 1.5),
+      );
       renderer.setSize(width, height, false);
+      system.scale.setScalar(width < 420 ? 0.88 : 1);
       render();
     };
 
@@ -284,19 +353,25 @@ export function HeroThreeScene() {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       reduceMotionQuery.removeEventListener("change", onMotionPreferenceChange);
 
-      coreGeometry.dispose();
-      coreMaterial.dispose();
-      shellGeometry.dispose();
-      shellMaterial.dispose();
-      ringGeometryA.dispose();
-      ringGeometryB.dispose();
-      violetMaterial.dispose();
-      blueMaterial.dispose();
-      nodeGeometry.dispose();
-      nodeMaterials.forEach((material) => material.dispose());
-      pointGeometry.dispose();
-      pointMaterial.dispose();
+      const geometries = new Set<THREE.BufferGeometry>();
+      const materials = new Set<THREE.Material>();
+      scene.traverse((object) => {
+        const renderable = object as THREE.Object3D & {
+          geometry?: THREE.BufferGeometry;
+          material?: THREE.Material | THREE.Material[];
+        };
+        if (renderable.geometry) geometries.add(renderable.geometry);
+        if (Array.isArray(renderable.material)) {
+          renderable.material.forEach((material) => materials.add(material));
+        } else if (renderable.material) {
+          materials.add(renderable.material);
+        }
+      });
+      geometries.forEach((geometry) => geometry.dispose());
+      materials.forEach((material) => material.dispose());
+
       timer.dispose();
+      renderer.renderLists.dispose();
       renderer.dispose();
       renderer.forceContextLoss();
 
