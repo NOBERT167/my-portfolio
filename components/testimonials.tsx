@@ -54,10 +54,10 @@ export function Testimonials() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.45 }}
         >
-          <p className="eyebrow">Testimonials</p>
+          <p className="eyebrow">Proof of work</p>
           <h2
             id="testimonials-heading"
-            className="mt-3 text-balance text-4xl font-semibold tracking-[-0.045em] sm:text-5xl md:text-6xl"
+            className="mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
           >
             Trust is built in the work, then{" "}
             <span className="gradient-text">confirmed by people.</span>
