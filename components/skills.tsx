@@ -22,7 +22,11 @@ export function Skills() {
   }, {});
 
   return (
-    <section id="skills" className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="relative px-5 py-24 sm:px-8 md:py-32"
+    >
       <div
         className="gradient-orb left-0 top-0 h-[300px] w-[300px] bg-[var(--neon-muted)]"
         aria-hidden="true"
@@ -35,10 +39,11 @@ export function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-[var(--neon)] mb-3">
-            Tech stack
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-12">
+          <p className="eyebrow">Tech stack</p>
+          <h2
+            id="skills-heading"
+            className="mb-12 mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
+          >
             Skills &amp; <span className="gradient-text">Tools</span>
           </h2>
         </motion.div>
