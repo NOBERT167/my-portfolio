@@ -5,7 +5,7 @@ export const SITE = {
     "I craft performant web experiences with clean code and sharp design. Based in Nairobi, Kenya.",
   email: "nobertlangat@gmail.com",
   location: "Nairobi, Kenya",
-  resumeUrl: "#",
+  resumeUrl: "/resume.pdf",
   socials: {
     github: "https://github.com/NOBERT167",
     linkedin: "https://www.linkedin.com/in/langat-kipkoech-nobert-ab44661ba/",
@@ -221,7 +221,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Portfolio",
     description:
-      "This portfolio — built with Next.js, Tailwind CSS, and Framer Motion. Features a dark-themed design system, smooth scroll animations, a categorized skills grid, and a timeline-based experience section.",
+      "This portfolio is built with Next.js, Tailwind CSS, and Framer Motion. It features an editorial design system, an interactive product architecture visual, a project archive, and accessible light and dark themes.",
     tech: ["TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/NOBERT167/my-portfolio",
     live: "https://nobertdev.vercel.app",
@@ -282,21 +282,21 @@ export const EXPERIENCES: Experience[] = [
     role: "Full-Stack Developer",
     company: "Greencom Enterprise Solutions",
     location: "Nairobi, Kenya",
-    period: "June 2024 — Present",
+    period: "June 2024 - Present",
     highlights: [
       "Modernized legacy ASP.NET Framework MVC applications by migrating to ASP.NET Core + React.js (TypeScript, Tailwind CSS, ShadCN), improving maintainability, performance, and user experience.",
       "Designed and built secure, scalable RESTful APIs using ASP.NET Core and Node.js, enforcing OWASP security standards across all endpoints.",
-      "Built an AI-powered OData MVC code generator that automates production-ready ASP.NET MVC scaffolding from Business Central schemas — cutting development time by 85%.",
+      "Built an AI-powered OData MVC code generator that automates production-ready ASP.NET MVC scaffolding from Business Central schemas, cutting development time by 85%.",
       "Maintained legacy ASP.NET MVC portals and jQuery-based frontends, resolving bugs and shipping incremental feature improvements.",
       "Collaborated in cross-functional teams using Git/GitHub workflows, conducting code reviews and managing CI/CD pipelines via Jenkins and GitHub Actions.",
-      "Developed and integrated enterprise web portals — Employee Self-Service, E-Recruitment, E-Procurement, and CRM — with Microsoft Dynamics 365 Business Central ERP, serving hundreds of end-users across multiple client organizations.",
+      "Developed and integrated enterprise web portals, including Employee Self-Service, E-Recruitment, E-Procurement, and CRM, with Microsoft Dynamics 365 Business Central ERP, serving hundreds of end-users across multiple client organizations.",
     ],
   },
   {
     role: "ICT Technician",
     company: "Holy Trinity Kimatisio Parish",
     location: "Bomet, Kenya",
-    period: "May 2023 — June 2024",
+    period: "May 2023 - June 2024",
     highlights: [
       "Developed a document management database system to digitize records, improving retrieval efficiency and reducing paper-based processes.",
       "Designed digital assets for parish events; provided day-to-day ICT support including hardware troubleshooting and software configuration.",
@@ -306,7 +306,7 @@ export const EXPERIENCES: Experience[] = [
     role: "Web Developer & Designer",
     company: "Saint Anthony Youth Service (SAYS)",
     location: "Kericho, Kenya",
-    period: "Oct 2023 — June 2024",
+    period: "Oct 2023 - June 2024",
     highlights: [
       "Developed a responsive website for the diocese's youth department.",
       "Designed event posters and flyers for various initiatives.",
@@ -317,7 +317,7 @@ export const EXPERIENCES: Experience[] = [
     role: "ICT Intern",
     company: "Bomet University College",
     location: "Bomet, Kenya",
-    period: "Sept 2022 — Dec 2022",
+    period: "Sept 2022 - Dec 2022",
     highlights: [
       "Contributed to an open-source GitHub project, gaining hands-on collaborative version control experience.",
       "Supported web development, network optimization, and server management across the university's IT environment.",

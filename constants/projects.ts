@@ -212,7 +212,7 @@ const projects = [
   {
     title: "Portfolio",
     description:
-      "This portfolio — built with Next.js, Tailwind CSS, and Framer Motion. Features a dark-themed design system, smooth scroll animations, a categorized skills grid, and a timeline-based experience section.",
+      "This portfolio is built with Next.js, Tailwind CSS, and Framer Motion. It features an editorial design system, an interactive product architecture visual, a project archive, and accessible light and dark themes.",
     tech: ["TypeScript", "Next.js", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/NOBERT167/my-portfolio",
     live: "https://nobertdev.vercel.app",

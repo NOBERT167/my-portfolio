@@ -9,29 +9,24 @@ const HeroThreeScene = dynamic(
 );
 
 const SYSTEM_LAYERS = [
-  { index: "01", label: "Experience", tech: "Product + UX" },
-  { index: "02", label: "Frontend", tech: "React + Next.js" },
-  { index: "03", label: "Services", tech: "Node + ASP.NET" },
-  { index: "04", label: "Data", tech: "APIs + SQL" },
+  { label: "Experience", tech: "Product + UX" },
+  { label: "Frontend", tech: "React + Next.js" },
+  { label: "Services", tech: "Node + ASP.NET" },
+  { label: "Data", tech: "APIs + SQL" },
 ] as const;
 
 export function ProductSystem() {
   return (
-    <figure className="three-hero-shell relative mx-auto aspect-square w-full max-w-[31rem] overflow-hidden">
+    <figure className="three-hero-shell relative mx-auto h-56 w-full max-w-[31rem] overflow-hidden rounded-2xl sm:h-72 lg:aspect-square lg:h-auto">
       <div className="absolute inset-0" aria-hidden="true">
         <div className="three-scene-fallback absolute inset-0" />
         <HeroThreeScene />
 
-        <div className="three-scene-label">
-          <span className="three-scene-status" />
-          End-to-end product system
-        </div>
-        <div className="three-scene-index">SYSTEM / 04</div>
+        <div className="three-scene-label">Product delivery system</div>
 
         <ol className="three-layer-list">
           {SYSTEM_LAYERS.map((layer) => (
-            <li key={layer.index} className="three-layer-label">
-              <span className="three-layer-index">{layer.index}</span>
+            <li key={layer.label} className="three-layer-label">
               <span>
                 <strong>{layer.label}</strong>
                 <small>{layer.tech}</small>
@@ -41,25 +36,13 @@ export function ProductSystem() {
         </ol>
 
         <div className="three-system-summary">
-          <div>
-            <p>Delivery pipeline</p>
-            <strong>Architecture to production</strong>
-          </div>
-          <div className="three-system-pipeline">
-            <span>Design</span>
-            <i />
-            <span>Build</span>
-            <i />
-            <span>Ship</span>
-          </div>
+          <strong>Architecture to production</strong>
         </div>
       </div>
 
       <figcaption className="sr-only">
-        A four-layer product architecture showing data and APIs connected to
-        application services, a React and Next.js frontend, and the final
-        product experience. Animated signals move through the system from data
-        to delivery.
+        A four-layer product architecture showing data, services, frontend, and
+        the final product experience connected as one delivery system.
       </figcaption>
     </figure>
   );

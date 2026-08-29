@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Briefcase, MapPin, ExternalLink } from "lucide-react";
+import { ExternalLink, MapPin } from "lucide-react";
 import { EXPERIENCES } from "@/constants";
 
 export function Experience() {
@@ -9,133 +6,103 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="relative px-5 py-24 sm:px-8 md:py-32"
+      className="px-5 py-24 sm:px-8 md:py-32"
     >
-      <div
-        className="gradient-orb right-0 top-0 h-75 w-75 bg-[var(--neon-muted)]"
-        aria-hidden="true"
-      />
-
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="eyebrow">Career</p>
+      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <h2
             id="experience-heading"
-            className="mb-12 mt-3 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl"
+            className="text-4xl font-semibold leading-[1.06] sm:text-5xl"
           >
-            Work{" "}
-            <span className="gradient-text">
-              Experience
-            </span>
+            Experience
           </h2>
-        </motion.div>
+          <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
+            Product engineering across enterprise delivery, public-service
+            platforms, and community organizations.
+          </p>
+        </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4.75 md:left-5.75 top-0 bottom-0 w-px bg-accent" />
+        <div className="border-t border-[var(--glass-border)]">
+          {EXPERIENCES.map((experience) => {
+            const primaryHighlights = experience.highlights.slice(0, 3);
+            const additionalHighlights = experience.highlights.slice(3);
 
-          <div className="space-y-8">
-            {EXPERIENCES.map((exp, idx) => (
-              <motion.div
-                key={`${exp.company}-${idx}`}
-                className="relative pl-12 md:pl-16"
-                initial={{ y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
+            return (
+              <article
+                key={experience.company + experience.period}
+                className="border-b border-[var(--glass-border)] py-8 first:pt-0"
               >
-                {/* Timeline dot */}
-                <div className="absolute left-3 md:left-4 top-2 w-3.75 h-3.75 rounded-full border-2 border-neon bg-background z-10" />
+                <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold">
+                      {experience.role}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-[var(--neon)]">
+                      {experience.company}
+                    </p>
+                  </div>
+                  <p className="font-mono text-xs leading-6 text-muted-foreground">
+                    {experience.period}
+                  </p>
+                </div>
 
-                <div
-                  className="glass-card noise spotlight-card rounded-2xl p-6 md:p-8"
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    e.currentTarget.style.setProperty(
-                      "--spotlight-x",
-                      `${e.clientX - rect.left}px`,
-                    );
-                    e.currentTarget.style.setProperty(
-                      "--spotlight-y",
-                      `${e.clientY - rect.top}px`,
-                    );
-                  }}
-                >
-                  <div className="relative z-10">
-                    {/* Header */}
-                    <motion.div
-                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1"
-                      initial={{ x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + 0.15, duration: 0.4 }}
+                <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin size={14} aria-hidden="true" />
+                    {experience.location}
+                  </span>
+                  {experience.link ? (
+                    <a
+                      href={experience.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 transition-colors hover:text-[var(--neon)]"
                     >
-                      <h3 className="text-lg md:text-xl font-semibold text-foreground">
-                        {exp.role}
-                      </h3>
-                      <span className="text-xs tracking-wider text-muted-foreground font-mono">
-                        {exp.period}
-                      </span>
-                    </motion.div>
+                      Website
+                      <ExternalLink size={14} aria-hidden="true" />
+                    </a>
+                  ) : null}
+                </div>
 
-                    <motion.div
-                      className="flex flex-wrap items-center gap-3 mb-4"
-                      initial={{ x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + 0.25, duration: 0.4 }}
+                <ul className="mt-6 space-y-3">
+                  {primaryHighlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-3 text-sm leading-6 text-muted-foreground"
                     >
-                      <span className="flex items-center gap-1.5 text-sm text-neon">
-                        <Briefcase size={14} />
-                        {exp.company}
-                      </span>
-                      <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <MapPin size={14} />
-                        {exp.location}
-                      </span>
-                      {exp.link && (
-                        <a
-                          href={exp.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-muted-foreground hover:text-neon transition-colors"
-                        >
-                          <ExternalLink size={14} />
-                          Website
-                        </a>
-                      )}
-                    </motion.div>
+                      <span
+                        className="mt-[0.68rem] h-px w-3 bg-[var(--neon)]"
+                        aria-hidden="true"
+                      />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
 
-                    {/* Highlights */}
-                    <ul className="space-y-2">
-                      {exp.highlights.map((highlight, i) => (
-                        <motion.li
-                          key={i}
-                          className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
-                          initial={{ x: -15 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            delay: idx * 0.1 + 0.35 + i * 0.07,
-                            duration: 0.35,
-                          }}
+                {additionalHighlights.length > 0 ? (
+                  <details className="group mt-5 text-sm">
+                    <summary className="cursor-pointer font-semibold text-foreground transition-colors hover:text-[var(--neon)]">
+                      More responsibilities
+                    </summary>
+                    <ul className="mt-4 space-y-3">
+                      {additionalHighlights.map((highlight) => (
+                        <li
+                          key={highlight}
+                          className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-3 text-sm leading-6 text-muted-foreground"
                         >
-                          <span className="mt-1.5 min-w-1.5 h-1.5 rounded-full bg-(--neon)/50" />
+                          <span
+                            className="mt-[0.68rem] h-px w-3 bg-[var(--neon)]"
+                            aria-hidden="true"
+                          />
                           {highlight}
-                        </motion.li>
+                        </li>
                       ))}
                     </ul>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </details>
+                ) : null}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

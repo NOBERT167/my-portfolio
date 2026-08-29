@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { MotionProvider } from "@/components/motion-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -12,11 +12,11 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nobertdev.vercel.app"),
-  title: "Nobert Langat — Full-Stack Developer",
+  title: "Nobert Langat | Full-Stack Developer",
   description:
     "Full-stack developer and UI/UX designer building reliable web products with React, Next.js, Node.js, and ASP.NET Core.",
   openGraph: {
-    title: "Nobert Langat — Full-Stack Developer",
+    title: "Nobert Langat | Full-Stack Developer",
     description:
       "Full-stack developer and UI/UX designer building clear, reliable digital products.",
     type: "website",
@@ -34,7 +34,7 @@ export default function RootLayout({
       className={cn(
         "h-full dark",
         "antialiased",
-        inter.variable,
+        geist.variable,
         jetbrains.variable,
       )}
       suppressHydrationWarning

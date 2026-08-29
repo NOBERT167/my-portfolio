@@ -8,26 +8,26 @@ const PRECISE_POINTER_QUERY = "(pointer: fine)";
 
 const SYSTEM_LAYERS = [
   {
-    color: "#a855f7",
-    emissive: "#3b0a57",
+    color: "#c084fc",
+    emissive: "#43145a",
     y: 1.32,
     node: [1.06, 0.13, 0.5] as const,
   },
   {
     color: "#8b5cf6",
-    emissive: "#28134f",
+    emissive: "#39144f",
     y: 0.45,
     node: [-1.02, 0.13, -0.48] as const,
   },
   {
-    color: "#6366f1",
-    emissive: "#171b52",
+    color: "#8f51c2",
+    emissive: "#321340",
     y: -0.42,
     node: [1.02, 0.13, -0.48] as const,
   },
   {
-    color: "#3b82f6",
-    emissive: "#0b2d58",
+    color: "#7131ad",
+    emissive: "#281037",
     y: -1.29,
     node: [-1.06, 0.13, 0.5] as const,
   },
@@ -159,7 +159,7 @@ export function HeroThreeScene() {
 
     const spineGeometry = new THREE.CylinderGeometry(0.022, 0.022, 2.72, 10);
     const spineMaterial = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#93c5fd"),
+      color: new THREE.Color("#c79add"),
       transparent: true,
       opacity: 0.42,
       depthWrite: false,
@@ -172,7 +172,7 @@ export function HeroThreeScene() {
     const packetMaterials = [
       new THREE.MeshBasicMaterial({ color: "#f0abfc" }),
       new THREE.MeshBasicMaterial({ color: "#c4b5fd" }),
-      new THREE.MeshBasicMaterial({ color: "#7dd3fc" }),
+      new THREE.MeshBasicMaterial({ color: "#a855f7" }),
     ];
     const packets = packetMaterials.map((material, index) => {
       const packet = new THREE.Mesh(packetGeometry, material);
@@ -208,7 +208,7 @@ export function HeroThreeScene() {
     const points = new THREE.Points(pointGeometry, pointMaterial);
     scene.add(points);
 
-    const grid = new THREE.GridHelper(7.2, 16, "#4f46e5", "#312e81");
+    const grid = new THREE.GridHelper(7.2, 16, "#7131ad", "#2f183e");
     grid.position.set(0, -1.75, -0.5);
     const gridMaterials = Array.isArray(grid.material)
       ? grid.material
@@ -224,9 +224,9 @@ export function HeroThreeScene() {
     const violetLight = new THREE.PointLight("#8b5cf6", 14, 16, 2);
     violetLight.position.set(-3.2, 3.1, 4.2);
     scene.add(violetLight);
-    const blueLight = new THREE.PointLight("#38bdf8", 13, 16, 2);
-    blueLight.position.set(3.2, -2.4, 3.5);
-    scene.add(blueLight);
+    const violetFill = new THREE.PointLight("#b76ae3", 13, 16, 2);
+    violetFill.position.set(3.2, -2.4, 3.5);
+    scene.add(violetFill);
 
     const pointer = new THREE.Vector2();
     const pointerTarget = new THREE.Vector2();

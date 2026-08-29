@@ -8,6 +8,7 @@ import { Footer } from "@/components/contact";
 import { Navbar } from "@/components/navbar";
 import { ProjectCard } from "@/components/projects";
 import { PROJECTS } from "@/constants";
+import { cn } from "@/lib/utils";
 
 const FILTERS = [
   { id: "all", label: "All work", matches: () => true },
@@ -66,34 +67,30 @@ export default function ProjectsPage() {
       <Navbar />
       <main
         id="main-content"
-        className="relative min-h-dvh px-5 pb-24 pt-32 sm:px-8 sm:pt-36"
+        className="min-h-dvh px-5 pb-24 pt-28 sm:px-8 sm:pt-32"
       >
-        <div className="hero-grid opacity-50" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl">
           <motion.header
-            initial={{ y: 24 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
             <Link
               href="/"
-              className="mb-10 inline-flex min-h-11 items-center gap-2 rounded-xl pr-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="mb-9 inline-flex min-h-11 items-center gap-2 rounded-lg pr-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft size={17} aria-hidden="true" />
               Back to home
             </Link>
 
-            <div className="grid gap-6 border-b border-[var(--glass-border)] pb-10 md:grid-cols-12 md:items-end">
-              <div className="md:col-span-8">
-                <p className="eyebrow">Project archive</p>
-                <h1 className="mt-3 text-balance text-[2.35rem] font-semibold tracking-[-0.04em] sm:text-6xl md:text-7xl">
-                  Work across products, platforms, and{" "}
-                  <span className="gradient-text">open source.</span>
-                </h1>
-              </div>
-              <p className="max-w-md text-base leading-7 text-muted-foreground md:col-span-4 md:justify-self-end">
-                Explore {PROJECTS.length} projects—from production enterprise
+            <div className="max-w-4xl border-b border-[var(--glass-border)] pb-10">
+              <p className="eyebrow">Project archive</p>
+              <h1 className="mt-4 text-[2.5rem] font-semibold leading-[1.04] sm:text-5xl md:text-6xl">
+                Work across products, platforms, and{" "}
+                <span className="text-[var(--neon)]">open source.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">
+                Explore {PROJECTS.length} projects, from production enterprise
                 systems to focused experiments and reusable developer tools.
               </p>
             </div>
@@ -101,16 +98,16 @@ export default function ProjectsPage() {
 
           <motion.section
             aria-label="Project filters"
-            className="surface-card relative my-8 rounded-2xl p-3 sm:p-4"
-            initial={{ y: 16 }}
+            className="surface-card my-8 rounded-2xl p-3 sm:p-4"
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.4 }}
           >
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div className="filter-scroll flex min-w-0 items-center gap-2 overflow-x-auto pb-1 lg:pb-0">
+              <div className="filter-scroll flex min-w-0 items-center gap-1 overflow-x-auto pb-1 lg:pb-0">
                 <SlidersHorizontal
                   size={17}
-                  className="mr-1 shrink-0 text-muted-foreground"
+                  className="mr-2 shrink-0 text-muted-foreground"
                   aria-hidden="true"
                 />
                 {FILTERS.map((filter) => {
@@ -121,11 +118,12 @@ export default function ProjectsPage() {
                       key={filter.id}
                       onClick={() => setActiveFilter(filter.id)}
                       aria-pressed={isActive}
-                      className={`min-h-11 shrink-0 rounded-xl px-4 text-sm font-medium transition-colors duration-200 ${
+                      className={cn(
+                        "min-h-11 shrink-0 rounded-lg px-4 text-sm font-medium transition-colors",
                         isActive
-                          ? "gradient-button text-[var(--neon-foreground)]"
-                          : "text-muted-foreground hover:bg-[var(--surface-raised)] hover:text-foreground"
-                      }`}
+                          ? "bg-[var(--neon)] text-white"
+                          : "text-muted-foreground hover:bg-[var(--surface-hover)] hover:text-foreground",
+                      )}
                     >
                       {filter.label}
                     </button>
@@ -149,7 +147,7 @@ export default function ProjectsPage() {
                   placeholder="Search projects or technology"
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
-                  className="h-12 w-full rounded-xl border border-[var(--glass-border)] bg-[var(--surface-raised)] pl-11 pr-11 text-base text-foreground placeholder:text-muted-foreground focus:border-[var(--neon)] focus:outline-none focus:ring-2 focus:ring-[var(--neon-muted)]"
+                  className="h-12 w-full rounded-lg border border-[var(--glass-border)] bg-[var(--surface)] pl-11 pr-11 text-base text-foreground placeholder:text-muted-foreground focus:border-[var(--neon)] focus:outline-none focus:ring-2 focus:ring-[var(--neon-muted)]"
                 />
                 {search ? (
                   <button
@@ -176,7 +174,7 @@ export default function ProjectsPage() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className="min-h-11 rounded-xl px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="min-h-11 rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 Reset filters
               </button>
@@ -204,8 +202,8 @@ export default function ProjectsPage() {
             ) : (
               <motion.div
                 key="empty-projects"
-                className="surface-card flex min-h-72 flex-col items-center justify-center rounded-[1.75rem] px-6 text-center"
-                initial={{ opacity: 0, y: 12 }}
+                className="surface-card flex min-h-72 flex-col items-center justify-center rounded-2xl px-6 text-center"
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 role="status"
@@ -217,7 +215,7 @@ export default function ProjectsPage() {
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="gradient-button mt-6 min-h-11 rounded-xl px-4 text-sm font-semibold text-[var(--neon-foreground)]"
+                  className="gradient-button mt-6 min-h-11 rounded-lg px-4 text-sm font-semibold text-white"
                 >
                   Show all projects
                 </button>
