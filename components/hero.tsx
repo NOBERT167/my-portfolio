@@ -23,8 +23,9 @@ export function Hero() {
           </h1>
 
           <p className="hero-support mt-7 max-w-[52rem] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            Full-stack engineer and UI/UX designer building complex web
-            platforms with React, Next.js, Node.js, and ASP.NET Core.
+            Full-stack engineer and UI/UX designer based in Nairobi, Kenya
+            building complex web platforms with React, Next.js, Node.js, and
+            ASP.NET Core.
           </p>
 
           <div className="hero-actions mt-9 flex flex-wrap items-center gap-3">
