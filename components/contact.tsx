@@ -1,7 +1,4 @@
-import {
-  ArrowUpRight,
-  MapPin,
-} from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { SITE } from "@/constants";
 
 const SOCIALS = [
@@ -39,7 +36,11 @@ export function Contact() {
 
           <div className="border-l border-[var(--glass-border)] pl-6">
             <p className="inline-flex items-center gap-2 text-sm font-medium">
-              <MapPin size={16} className="text-[var(--neon)]" aria-hidden="true" />
+              <MapPin
+                size={16}
+                className="text-[var(--neon)]"
+                aria-hidden="true"
+              />
               {SITE.location}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -74,7 +75,7 @@ export function Footer() {
         <p>
           &copy; {new Date().getFullYear()} {SITE.name}
         </p>
-        <p>Designed and built in Nairobi.</p>
+        <p>Designed and built with ❤️ by Nobert.</p>
       </div>
     </footer>
   );
