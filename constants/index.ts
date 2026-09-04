@@ -26,7 +26,7 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
- {
+  {
     title: "Judiciary of Kenya Supplier Portal",
     description:
       "A production e-procurement platform that enables suppliers to discover tenders, submit bids, upload documents, provide financial responses, manage tender security, and track procurement activities.",
@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
       "ASP.NET Core",
       "C#",
       "REST API",
-      
+
       "OData",
       "SOAP",
     ],
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
       "C#",
       "REST API",
       "SQL Server",
-      
+
       "OData",
       "SOAP",
     ],
@@ -81,7 +81,7 @@ export const PROJECTS: Project[] = [
       "ASP.NET Core",
       "C#",
       "REST API",
-      
+
       "OData",
       "SOAP",
     ],
@@ -138,7 +138,7 @@ export const PROJECTS: Project[] = [
       "TypeScript",
       "Node.js",
       "OpenAI API",
-      "OData",   
+      "OData",
       "ASP.NET MVC",
       "C#",
     ],
@@ -147,26 +147,26 @@ export const PROJECTS: Project[] = [
     featured: true,
     image: "/projects/mvc-generator-new.png",
   },
-  {
-    title: "Employee Self-Service Platform",
-    description:
-      "An enterprise employee self-service platform supporting leave, claims, imprest, training, payment requests, salary advances, and other internal HR and finance workflows.",
-    tech: [
-      "React",
-      "TypeScript",
-      "ASP.NET Core",
-      "C#",
-      "SQL Server",
-      "REST API",     
-      "OData",
-      "SOAP",
-      "M-Pesa Daraja API",
-    ],
-    github: "",
-    live: "",
-    featured: false,
-    image: "",
-  },
+  // {
+  //   title: "Employee Self-Service Platform",
+  //   description:
+  //     "An enterprise employee self-service platform supporting leave, claims, imprest, training, payment requests, salary advances, and other internal HR and finance workflows.",
+  //   tech: [
+  //     "React",
+  //     "TypeScript",
+  //     "ASP.NET Core",
+  //     "C#",
+  //     "SQL Server",
+  //     "REST API",
+  //     "OData",
+  //     "SOAP",
+  //     "M-Pesa Daraja API",
+  //   ],
+  //   github: "",
+  //   live: "",
+  //   featured: false,
+  //   image: "",
+  // },
   {
     title: "AudiSpot254",
     description:
@@ -183,7 +183,7 @@ export const PROJECTS: Project[] = [
     github: "",
     live: "",
     featured: false,
-    image: "",
+    image: "/projects/audispot.png",
   },
   {
     title: "React Spotlight Search",
@@ -226,7 +226,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/NOBERT167/my-portfolio",
     live: "https://nobertdev.vercel.app",
     featured: true,
-    image: "",
+    image: "/projects/portfolio.png",
   },
   {
     title: "EazySell",
@@ -284,12 +284,19 @@ export const EXPERIENCES: Experience[] = [
     location: "Nairobi, Kenya",
     period: "June 2024 - Present",
     highlights: [
-      "Modernized legacy ASP.NET Framework MVC applications by migrating to ASP.NET Core + React.js (TypeScript, Tailwind CSS, ShadCN), improving maintainability, performance, and user experience.",
-      "Designed and built secure, scalable RESTful APIs using ASP.NET Core and Node.js, enforcing OWASP security standards across all endpoints.",
-      "Built an AI-powered OData MVC code generator that automates production-ready ASP.NET MVC scaffolding from Business Central schemas, cutting development time by 85%.",
-      "Maintained legacy ASP.NET MVC portals and jQuery-based frontends, resolving bugs and shipping incremental feature improvements.",
-      "Collaborated in cross-functional teams using Git/GitHub workflows, conducting code reviews and managing CI/CD pipelines via Jenkins and GitHub Actions.",
-      "Developed and integrated enterprise web portals, including Employee Self-Service, E-Recruitment, E-Procurement, and CRM, with Microsoft Dynamics 365 Business Central ERP, serving hundreds of end-users across multiple client organizations.",
+      // "Modernized legacy ASP.NET Framework MVC applications by migrating to ASP.NET Core + React.js (TypeScript, Tailwind CSS, ShadCN), improving maintainability, performance, and user experience.",
+      // "Designed and built secure, scalable RESTful APIs using ASP.NET Core and Node.js, enforcing OWASP security standards across all endpoints.",
+      // "Built an AI-powered OData MVC code generator that automates production-ready ASP.NET MVC scaffolding from Business Central schemas, cutting development time by 85%.",
+      // "Maintained legacy ASP.NET MVC portals and jQuery-based frontends, resolving bugs and shipping incremental feature improvements.",
+      // "Collaborated in cross-functional teams using Git/GitHub workflows, conducting code reviews and managing CI/CD pipelines via Jenkins and GitHub Actions.",
+      // "Developed and integrated enterprise web portals, including Employee Self-Service, E-Recruitment, E-Procurement, and CRM, with Microsoft Dynamics 365 Business Central ERP, serving hundreds of end-users across multiple client organizations.",
+      "Building and maintaining production enterprise applications across frontend, backend, integrations, databases, and deployment. I work mainly with React, Next.js, TypeScript, ASP.NET Core, C#, SQL Server, PostgreSQL, and Microsoft Dynamics 365 Business Central.",
+      "Build responsive enterprise portals and internal business systems.",
+      "Develop and integrate REST, OData, and SOAP APIs.",
+      "Work on procurement, recruitment, CRM, employee self-service, and supplier-management solutions.",
+      "Handle authentication, database integration, deployment, debugging, and production support.",
+      "Collaborate with users and stakeholders to turn business requirements into working software.",
+      "Built an AI-powered OData/MVC code generator that reduced repetitive development work by about 85%.",
     ],
   },
   {
@@ -298,8 +305,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Bomet, Kenya",
     period: "May 2023 - June 2024",
     highlights: [
-      "Developed a document management database system to digitize records, improving retrieval efficiency and reducing paper-based processes.",
-      "Designed digital assets for parish events; provided day-to-day ICT support including hardware troubleshooting and software configuration.",
+      "Supported the organization’s websites, digital systems, computers, and network infrastructure while helping improve how technology was used in day-to-day operations.",
+      "Provided ICT support and troubleshooting.",
+      "Managed backups, system access, and technical documentation.",
+      "Assisted and trained users on digital tools and systems.",
     ],
   },
   {
@@ -308,8 +317,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Kericho, Kenya",
     period: "Oct 2023 - June 2024",
     highlights: [
-      "Developed a responsive website for the diocese's youth department.",
-      "Designed event posters and flyers for various initiatives.",
+      "Developed and maintained responsive web experiences.",
+      "Created posters, promotional graphics, and digital content.",
+      "Worked with stakeholders to turn ideas into clear digital solutions.",
+      "Maintained visual consistency across web and promotional materials.",
     ],
     link: "https://alphadev13-cdkstanthonyyouthservice.mdbgo.io/",
   },
