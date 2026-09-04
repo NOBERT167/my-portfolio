@@ -204,7 +204,10 @@ export function ProjectCard({
           {project.description}
         </p>
 
-        <div className="mt-5 flex flex-wrap gap-2" aria-label="Technology stack">
+        <div
+          className="mt-5 flex flex-wrap gap-2"
+          aria-label="Technology stack"
+        >
           {visibleTech.map((tech) => (
             <span
               key={tech}
@@ -264,21 +267,19 @@ export function Projects() {
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12 lg:gap-6">
           {selectedProjects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-            />
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
 
-        <Link
-          href="/projects"
-          className="mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-[var(--glass-border)] bg-[var(--surface)] px-5 text-sm font-semibold transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)] lg:hidden"
-        >
-          Browse project archive
-          <ArrowRight size={17} aria-hidden="true" />
-        </Link>
+        <div className="text-center">
+          <Link
+            href="/projects"
+            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[var(--glass-border)] bg-[var(--surface)] px-5 text-sm font-semibold transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-hover)]"
+          >
+            Browse all projects
+            <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );
