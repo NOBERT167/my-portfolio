@@ -1,4 +1,5 @@
 import { SKILLS } from "@/constants";
+import { cn } from "@/lib/utils";
 
 const CATEGORY_LABELS: Record<string, string> = {
   language: "Languages",
@@ -49,14 +50,22 @@ export function Skills() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3">
-          {CATEGORY_ORDER.map((category) => {
+          {CATEGORY_ORDER.map((category, index) => {
             const categorySkills = grouped[category];
             if (!categorySkills?.length) return null;
 
             return (
               <article
                 key={category}
-                className="border-b border-[var(--glass-border)] py-7 md:px-7 md:nth-[2n+1]:pl-0 md:nth-[2n]:border-l lg:nth-[2n]:border-l-0 lg:nth-[3n+1]:pl-0 lg:nth-[3n+2]:border-l lg:nth-[3n]:border-l"
+                className={cn(
+                  "border-b border-[var(--glass-border)] py-7 md:pr-7 lg:pr-8",
+                  index % 2 === 0
+                    ? "md:border-l-0 md:pl-0"
+                    : "md:border-l md:pl-7",
+                  index % 3 === 0
+                    ? "lg:border-l-0 lg:pl-0"
+                    : "lg:border-l lg:pl-8",
+                )}
               >
                 <h3 className="text-sm font-semibold">
                   {CATEGORY_LABELS[category]}
