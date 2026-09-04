@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,13 +8,21 @@ import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { NAV_LINKS, SITE } from "@/constants";
 import { useDarkMode } from "@/hooks/use-darkmode";
+import { EASE_OUT, MOTION_DURATION } from "@/lib/motion";
 
 export function Navbar() {
   const { isDark, toggle } = useDarkMode();
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion() ?? false;
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
+  const closedMenuState = reduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, transform: "translate3d(0, -8px, 0)" };
+  const openMenuState = reduceMotion
+    ? { opacity: 1 }
+    : { opacity: 1, transform: "translate3d(0, 0, 0)" };
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -159,10 +167,15 @@ export function Navbar() {
                 ref={menuPanelRef}
                 id="mobile-navigation"
                 className="border-t border-[var(--glass-border)] bg-background px-5 py-3 shadow-lg sm:px-8 lg:hidden"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.2 }}
+                initial={closedMenuState}
+                animate={openMenuState}
+                exit={closedMenuState}
+                transition={{
+                  duration: reduceMotion
+                    ? MOTION_DURATION.feedback
+                    : MOTION_DURATION.surface,
+                  ease: EASE_OUT,
+                }}
               >
                 <div className="mx-auto max-w-6xl">
                   {NAV_LINKS.map((link) => (

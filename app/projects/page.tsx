@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Search, SlidersHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { useDeferredValue, useState } from "react";
@@ -8,6 +8,7 @@ import { Footer } from "@/components/contact";
 import { Navbar } from "@/components/navbar";
 import { ProjectCard } from "@/components/projects";
 import { PROJECTS } from "@/constants";
+import { EASE_OUT, MOTION_DURATION } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const FILTERS = [
@@ -37,7 +38,11 @@ const FILTERS = [
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
+  const reduceMotion = useReducedMotion() ?? false;
   const deferredSearch = useDeferredValue(search.trim().toLowerCase());
+  const emptyExit = reduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, transform: "translate3d(0, -8px, 0)" };
 
   const selectedFilter =
     FILTERS.find((filter) => filter.id === activeFilter) ?? FILTERS[0];
@@ -70,11 +75,7 @@ export default function ProjectsPage() {
         className="min-h-dvh px-5 pb-24 pt-28 sm:px-8 sm:pt-32"
       >
         <div className="mx-auto max-w-7xl">
-          <motion.header
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-          >
+          <header>
             <Link
               href="/"
               className="mb-9 inline-flex min-h-11 items-center gap-2 rounded-lg pr-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -94,14 +95,11 @@ export default function ProjectsPage() {
                 systems to focused experiments and reusable developer tools.
               </p>
             </div>
-          </motion.header>
+          </header>
 
-          <motion.section
+          <section
             aria-label="Project filters"
             className="surface-card my-8 rounded-2xl p-3 sm:p-4"
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08, duration: 0.4 }}
           >
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div className="filter-scroll flex min-w-0 items-center gap-1 overflow-x-auto pb-1 lg:pb-0">
@@ -161,7 +159,7 @@ export default function ProjectsPage() {
                 ) : null}
               </div>
             </div>
-          </motion.section>
+          </section>
 
           <div className="mb-6 flex items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground" aria-live="polite">
@@ -204,8 +202,12 @@ export default function ProjectsPage() {
                 key="empty-projects"
                 className="surface-card flex min-h-72 flex-col items-center justify-center rounded-2xl px-6 text-center"
                 initial={false}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1 }}
+                exit={emptyExit}
+                transition={{
+                  duration: MOTION_DURATION.surface,
+                  ease: EASE_OUT,
+                }}
                 role="status"
               >
                 <p className="text-xl font-semibold">No matching projects</p>

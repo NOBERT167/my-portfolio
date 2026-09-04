@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS } from "@/constants";
 import type { Project } from "@/constants";
+import { EASE_OUT, MOTION_DURATION } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const SHOWCASE_TITLES = [
@@ -123,6 +124,10 @@ export function ProjectCard({
   const shouldContainImage = Boolean(
     project.image && CONTAINED_IMAGE_PATHS.has(project.image),
   );
+  const reduceMotion = useReducedMotion() ?? false;
+  const exitAnimation = reduceMotion
+    ? { opacity: 0 }
+    : { opacity: 0, transform: "scale(0.98)" };
 
   return (
     <motion.article
@@ -133,14 +138,12 @@ export function ProjectCard({
         variant === "showcase" && SHOWCASE_SPANS[index % SHOWCASE_SPANS.length],
       )}
       initial={false}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      viewport={{ once: true, margin: "-60px" }}
+      exit={exitAnimation}
       transition={{
-        delay: Math.min(index * 0.045, 0.18),
-        duration: 0.46,
-        ease: [0.16, 1, 0.3, 1],
-        layout: { duration: 0.35 },
+        delay: variant === "showcase" ? Math.min(index * 0.045, 0.18) : 0,
+        duration: MOTION_DURATION.surface,
+        ease: EASE_OUT,
+        layout: { duration: MOTION_DURATION.layout, ease: EASE_OUT },
       }}
     >
       <div className="project-media relative aspect-[16/9] overflow-hidden border-b border-[var(--glass-border)] bg-[var(--media-background)]">
@@ -155,10 +158,10 @@ export function ProjectCard({
                 : "(max-width: 1024px) 100vw, 58vw"
             }
             className={cn(
-              "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "project-image",
               shouldContainImage
-                ? "object-contain"
-                : "object-cover group-hover:scale-[1.02]",
+                ? "project-image-contained object-contain"
+                : "object-cover",
             )}
           />
         ) : (

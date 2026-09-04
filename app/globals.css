@@ -84,6 +84,11 @@
   --section-surface: #f1eff4;
   --media-background: #110d16;
   --radius: 0.5rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-feedback: 140ms;
+  --duration-state: 180ms;
+  --duration-surface: 220ms;
   --sidebar: #ffffff;
   --sidebar-foreground: #17131d;
   --sidebar-primary: #7131ad;
@@ -169,15 +174,14 @@ body {
 .project-card {
   position: relative;
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    border-color var(--duration-state) var(--ease-out),
+    box-shadow var(--duration-state) var(--ease-out),
+    transform var(--duration-state) var(--ease-out);
 }
 
 .project-card:focus-within {
   border-color: var(--border-strong);
   box-shadow: 0 18px 48px rgba(53, 26, 72, 0.12);
-  transform: translateY(-2px);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -192,14 +196,24 @@ body {
   background: var(--surface-raised);
 }
 
+.project-image {
+  transition: transform 700ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-image:not(.project-image-contained) {
+    transform: scale(1.02);
+  }
+}
+
 .gradient-button {
   background: var(--neon);
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(113, 49, 173, 0.2);
   transition:
-    background-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    background-color var(--duration-state) var(--ease-out),
+    box-shadow var(--duration-surface) var(--ease-out),
+    transform var(--duration-feedback) var(--ease-out);
 }
 
 .dark .gradient-button {
@@ -209,6 +223,80 @@ body {
 .gradient-button:hover {
   background: color-mix(in srgb, var(--neon) 88%, black);
   box-shadow: 0 10px 28px rgba(113, 49, 173, 0.27);
+}
+
+.motion-pressable {
+  transition:
+    background-color var(--duration-state) var(--ease-out),
+    border-color var(--duration-state) var(--ease-out),
+    color var(--duration-state) var(--ease-out),
+    box-shadow var(--duration-surface) var(--ease-out),
+    transform var(--duration-feedback) var(--ease-out);
+}
+
+.hero-support,
+.hero-actions {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 620ms var(--ease-out),
+    transform 620ms var(--ease-out);
+  transition-delay: var(--hero-delay, 0ms);
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.hero-line > span {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  transition: transform 720ms var(--ease-out);
+  transition-delay: var(--hero-delay, 0ms);
+}
+
+.hero-line:nth-child(1) > span {
+  --hero-delay: 80ms;
+}
+
+.hero-line:nth-child(2) > span {
+  --hero-delay: 150ms;
+}
+
+.hero-support {
+  --hero-delay: 280ms;
+}
+
+.hero-actions {
+  --hero-delay: 350ms;
+}
+
+.hero-action-icon {
+  transition: transform var(--duration-feedback) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-work-action:hover .hero-action-icon {
+    transform: translate3d(2px, 2px, 0);
+  }
+
+  .hero-resume-action:hover .hero-action-icon {
+    transform: translate3d(0, 2px, 0);
+  }
+}
+
+@starting-style {
+  .hero-line > span {
+    transform: translate3d(0, 105%, 0);
+  }
+
+  .hero-support,
+  .hero-actions {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
 }
 
 .brand-mark {
@@ -287,5 +375,17 @@ body {
 
   .project-card:hover {
     transform: none;
+  }
+
+  .project-image,
+  .gradient-button:active,
+  .motion-pressable:active,
+  .hero-action-icon,
+  .hero-support,
+  .hero-actions,
+  .hero-line > span {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0ms;
   }
 }
