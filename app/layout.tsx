@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+// import { Geist, JetBrains_Mono } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { MotionProvider } from "@/components/motion-provider";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
+// const jetbrains = JetBrains_Mono({
+//   subsets: ["latin"],
+//   variable: "--font-geist-mono",
+// });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nobertdev.vercel.app"),
@@ -34,8 +35,8 @@ export default function RootLayout({
       className={cn(
         "h-full dark",
         "antialiased",
-        geist.variable,
-        jetbrains.variable,
+        figtree.variable,
+        // jetbrains.variable,
       )}
       suppressHydrationWarning
     >
