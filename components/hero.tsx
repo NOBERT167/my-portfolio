@@ -1,5 +1,13 @@
 import { ArrowDownRight, Download } from "lucide-react";
 import Link from "next/link";
+import { SITE } from "@/constants";
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/social-icons";
+
+const SOCIALS = [
+  { label: "GitHub", href: SITE.socials.github, Icon: GitHubIcon },
+  { label: "LinkedIn", href: SITE.socials.linkedin, Icon: LinkedInIcon },
+  { label: "Twitter", href: SITE.socials.twitter, Icon: XIcon },
+] as const;
 
 export function Hero() {
   return (
@@ -53,6 +61,22 @@ export function Hero() {
               Resume
             </a>
           </div>
+
+          <ul className="hero-socials mt-8 flex items-center justify-center gap-2">
+            {SOCIALS.map(({ label, href, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="motion-pressable inline-flex size-11 items-center justify-center rounded-lg text-muted-foreground hover:bg-[var(--surface-hover)] hover:text-[var(--neon)] active:scale-[0.96]"
+                >
+                  <Icon size={20} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -237,7 +237,8 @@ body {
 }
 
 .hero-support,
-.hero-actions {
+.hero-actions,
+.hero-socials {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition:
@@ -275,6 +276,10 @@ body {
   --hero-delay: 350ms;
 }
 
+.hero-socials {
+  --hero-delay: 420ms;
+}
+
 .hero-action-icon {
   transition: transform var(--duration-feedback) var(--ease-out);
 }
@@ -295,7 +300,8 @@ body {
   }
 
   .hero-support,
-  .hero-actions {
+  .hero-actions,
+  .hero-socials {
     opacity: 0;
     transform: translate3d(0, 10px, 0);
   }
@@ -385,6 +391,7 @@ body {
   .hero-action-icon,
   .hero-support,
   .hero-actions,
+  .hero-socials,
   .hero-line > span {
     opacity: 1;
     transform: none;
